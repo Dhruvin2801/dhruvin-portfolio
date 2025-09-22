@@ -4,6 +4,12 @@ import { ArrowRight, Download } from "lucide-react";
 export const HeroSection = () => {
   return (
     <section id="home" className="min-h-screen flex items-center justify-center relative overflow-hidden">
+      {/* Galaxy and Stars Background */}
+      <div className="galaxy-bg">
+        <div className="galaxy"></div>
+        <div className="stars"></div>
+      </div>
+      
       {/* Geometric Background Elements */}
       <div className="geometric-bg">
         <div className="geometric-shape shape-1"></div>
