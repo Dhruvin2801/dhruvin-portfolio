@@ -11,13 +11,15 @@ export const ProjectsSection = () => {
   const projects = [
     {
       id: 0,
-      title: "E-commerce Analytics Dashboard",
-      description: "Comprehensive analytics platform for tracking customer behavior, sales performance, and inventory optimization. Built with real-time data processing and predictive analytics capabilities.",
-      longDescription: "This advanced analytics platform revolutionizes how e-commerce businesses understand their customers and optimize operations. The system processes millions of data points in real-time, providing actionable insights through intuitive dashboards and automated reporting. Key features include customer journey mapping, predictive inventory management, and dynamic pricing optimization.",
+      title: "Amazon — Operational Strategy & People Analytics Extern",
+      description: " Applied thematic coding and sentiment scoring to 500+ unstructured employee feedback entries, quantifying attrition drivers, productivity 
+bottlenecks, and role-specific challenges.",
+      longDescription: "Built segmented cohort profiles with weighted retention and engagement metrics, translating insights into operational intervention roadmaps 
+and stakeholder-ready decks",
       icon: ShoppingCart,
       category: "Corporate",
       thumbnail: "/api/placeholder/300/200",
-      technologies: ["Python", "Tableau", "SQL", "Machine Learning"],
+      technologies: ["Python", "Tableau", "Machine Learning"],
       metrics: [
         "25% increase in conversion rate",
         "30% reduction in inventory costs",
