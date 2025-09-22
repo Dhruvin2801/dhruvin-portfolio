@@ -1,8 +1,5 @@
 import { Prism as SyntaxHighlighter } from "react-syntax-highlighter";
 import { oneDark } from "react-syntax-highlighter/dist/esm/styles/prism";
-
-...
-
 {/* Right Column */}
 <div className="lg:w-[65%] w-full">
   <Card className="h-full bg-card/50 border-border/50">
