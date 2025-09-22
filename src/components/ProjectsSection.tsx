@@ -33,7 +33,7 @@ export const ProjectsSection = () => {
     },
     {
       id: 1,
-      title: "etection and Classification of Diabetic Retinopathy using Deep Learning", 
+      title: "Detection and Classification of Diabetic Retinopathy using Deep Learning", 
       description: "Advanced clustering analysis to identify customer segments and personalize marketing strategies.",
       longDescription: "A sophisticated machine learning project that transforms customer data into actionable business intelligence. Using advanced clustering algorithms and RFM analysis, this system identifies distinct customer segments and predicts customer lifetime value with 85% accuracy. The insights drive personalized marketing campaigns and improve customer retention strategies.",
       icon: Users,
