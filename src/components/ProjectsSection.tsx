@@ -12,7 +12,7 @@ export const ProjectsSection = () => {
     {
       id: 0,
       title: "Amazon — Operational Strategy & People Analytics Extern",
-      description: " Applied thematic coding and sentiment scoring to 500+ unstructured employee feedback entries, quantifying attrition drivers, productivity 
+      description: "Applied thematic coding and sentiment scoring to 500+ unstructured employee feedback entries, quantifying attrition drivers, productivity 
 bottlenecks, and role-specific challenges.",
       longDescription: "Built segmented cohort profiles with weighted retention and engagement metrics, translating insights into operational intervention roadmaps 
 and stakeholder-ready decks",
