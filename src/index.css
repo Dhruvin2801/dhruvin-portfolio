@@ -6,44 +6,44 @@
 
 @layer base {
   :root {
-    /* Dark Theme - Primary Colors */
-    --background: 240 10% 3.9%;
+    /* Bright Dark Theme - Primary Colors */
+    --background: 240 10% 8%;
     --foreground: 0 0% 98%;
 
-    --card: 240 10% 3.9%;
+    --card: 240 8% 12%;
     --card-foreground: 0 0% 98%;
 
-    --popover: 240 10% 3.9%;
+    --popover: 240 8% 12%;
     --popover-foreground: 0 0% 98%;
 
-    /* Purple/Blue Accent System */
-    --primary: 263 70% 50%;
+    /* Bright Purple/Violet Accent System */
+    --primary: 270 95% 70%;
     --primary-foreground: 0 0% 98%;
-    --primary-glow: 263 70% 65%;
+    --primary-glow: 270 95% 80%;
 
-    --secondary: 240 4.8% 15.9%;
+    --secondary: 240 6% 20%;
     --secondary-foreground: 0 0% 98%;
 
-    --muted: 240 5.9% 10%;
-    --muted-foreground: 240 5% 64.9%;
+    --muted: 240 8% 15%;
+    --muted-foreground: 240 5% 70%;
 
-    --accent: 263 70% 50%;
+    --accent: 270 95% 70%;
     --accent-foreground: 0 0% 98%;
 
     --destructive: 0 62.8% 30.6%;
     --destructive-foreground: 0 0% 98%;
 
-    --border: 240 3.7% 15.9%;
-    --input: 240 3.7% 15.9%;
-    --ring: 263 70% 50%;
+    --border: 240 6% 22%;
+    --input: 240 6% 22%;
+    --ring: 270 95% 70%;
 
     --radius: 0.75rem;
 
     /* Custom Design Tokens */
-    --hero-gradient: linear-gradient(135deg, hsl(263 70% 50%), hsl(220 70% 55%));
-    --text-gradient: linear-gradient(135deg, hsl(0 0% 98%), hsl(263 70% 65%));
-    --border-glow: 0 0 20px hsl(263 70% 50% / 0.3);
-    --shadow-elegant: 0 10px 30px -10px hsl(263 70% 50% / 0.2);
+    --hero-gradient: linear-gradient(135deg, hsl(270 95% 70%), hsl(260 90% 65%));
+    --text-gradient: linear-gradient(135deg, hsl(0 0% 98%), hsl(270 95% 80%));
+    --border-glow: 0 0 20px hsl(270 95% 70% / 0.4);
+    --shadow-elegant: 0 10px 30px -10px hsl(270 95% 70% / 0.3);
     
     /* Animations */
     --transition-smooth: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
@@ -79,8 +79,8 @@
 
   body {
     @apply bg-background text-foreground;
-    background-image: radial-gradient(circle at 25% 25%, hsl(263 70% 50% / 0.1) 0%, transparent 50%),
-                      radial-gradient(circle at 75% 75%, hsl(220 70% 55% / 0.1) 0%, transparent 50%);
+    background-image: radial-gradient(circle at 25% 25%, hsl(270 95% 70% / 0.15) 0%, transparent 50%),
+                      radial-gradient(circle at 75% 75%, hsl(260 90% 65% / 0.15) 0%, transparent 50%);
   }
 
   /* Geometric Background Elements */
@@ -96,7 +96,7 @@
 
   .geometric-shape {
     position: absolute;
-    border: 1px solid hsl(263 70% 50% / 0.2);
+    border: 1px solid hsl(270 95% 70% / 0.3);
     border-radius: 8px;
     animation: float 6s ease-in-out infinite;
   }
@@ -143,7 +143,7 @@
   /* Hero Button Styles */
   .btn-hero {
     background: var(--hero-gradient);
-    border: 1px solid hsl(263 70% 50% / 0.5);
+    border: 1px solid hsl(270 95% 70% / 0.6);
     box-shadow: var(--shadow-elegant);
     transition: var(--transition-smooth);
   }
@@ -154,15 +154,15 @@
   }
 
   .btn-outline-hero {
-    border: 1px solid hsl(263 70% 50% / 0.5);
-    background: hsl(240 10% 3.9% / 0.8);
+    border: 1px solid hsl(270 95% 70% / 0.6);
+    background: hsl(240 8% 12% / 0.8);
     backdrop-filter: blur(10px);
     transition: var(--transition-smooth);
   }
 
   .btn-outline-hero:hover {
-    border-color: hsl(263 70% 50%);
-    background: hsl(263 70% 50% / 0.1);
+    border-color: hsl(270 95% 70%);
+    background: hsl(270 95% 70% / 0.15);
     box-shadow: var(--border-glow);
   }
 
