@@ -4,6 +4,8 @@ import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
 import { Tabs, TabsList, TabsTrigger, TabsContent } from "@/components/ui/tabs";
 import { ExternalLink, Github, BarChart3, ShoppingCart, Users, Brain, FileText, Target } from "lucide-react";
+import { Prism as SyntaxHighlighter } from 'react-syntax-highlighter';
+import { vscDarkPlus } from 'react-syntax-highlighter/dist/esm/styles/prism';
 
 export const ProjectsSection = () => {
   const [selectedProject, setSelectedProject] = useState(0);
@@ -515,19 +517,26 @@ class HyperparameterTuning:
                             <div className="w-3 h-3 rounded-full bg-green-500"></div>
                             <span className="text-gray-400 text-sm ml-2">{currentProject.title}.ts</span>
                           </div>
-                          <div className="p-4 h-80 overflow-auto">
-                            <pre className="text-sm text-gray-300 leading-relaxed">
-                              <code dangerouslySetInnerHTML={{ 
-                                __html: currentProject.code
-                                  .replace(/import/g, '<span style="color: #c792ea">import</span>')
-                                  .replace(/from/g, '<span style="color: #c792ea">from</span>')
-                                  .replace(/interface|class|const|let|var/g, '<span style="color: #82aaff">$&</span>')
-                                  .replace(/async|await|function/g, '<span style="color: #c792ea">$&</span>')
-                                  .replace(/\/\/.*$/gm, '<span style="color: #546e7a">$&</span>')
-                                  .replace(/"[^"]*"/g, '<span style="color: #c3e88d">$&</span>')
-                                  .replace(/\b\d+\b/g, '<span style="color: #f78c6c">$&</span>')
-                              }} />
-                            </pre>
+                          <div className="p-0 h-80 overflow-auto">
+                            <SyntaxHighlighter
+                              language="typescript"
+                              style={vscDarkPlus}
+                              customStyle={{
+                                background: 'transparent',
+                                padding: '1rem',
+                                margin: 0,
+                                fontSize: '14px',
+                                lineHeight: '1.4',
+                              }}
+                              showLineNumbers={true}
+                              lineNumberStyle={{ 
+                                color: '#6B7280', 
+                                fontSize: '12px',
+                                paddingRight: '1rem'
+                              }}
+                            >
+                              {currentProject.code}
+                            </SyntaxHighlighter>
                           </div>
                         </div>
                       ) : (
