@@ -542,6 +542,12 @@ class HyperparameterTuning:
                                 'token.builtin': { color: '#4ec9b0' },
                                 'token.property': { color: '#9cdcfe' },
                                 'token.constant': { color: '#4fc1ff' },
+                                'token.variable': { color: '#9cdcfe' },
+                                'token.parameter': { color: '#9cdcfe' },
+                                'token.attr-name': { color: '#92c5f7' },
+                                'token.tag': { color: '#569cd6' },
+                                'token.deleted': { color: '#f85149' },
+                                'token.inserted': { color: '#56d364' },
                               }}
                               customStyle={{
                                 background: '#1e1e1e',
