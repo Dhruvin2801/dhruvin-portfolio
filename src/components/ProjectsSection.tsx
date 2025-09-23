@@ -5,7 +5,7 @@ import { Button } from "@/components/ui/button";
 import { Tabs, TabsList, TabsTrigger, TabsContent } from "@/components/ui/tabs";
 import { ExternalLink, Github, BarChart3, ShoppingCart, Users, Brain, FileText, Target } from "lucide-react";
 import { Prism as SyntaxHighlighter } from 'react-syntax-highlighter';
-import { vscDarkPlus } from 'react-syntax-highlighter/dist/esm/styles/prism';
+import { atomDark } from 'react-syntax-highlighter/dist/esm/styles/prism';
 
 export const ProjectsSection = () => {
   const [selectedProject, setSelectedProject] = useState(0);
@@ -520,19 +520,44 @@ class HyperparameterTuning:
                           <div className="p-0 h-80 overflow-auto">
                             <SyntaxHighlighter
                               language="typescript"
-                              style={vscDarkPlus}
+                              style={{
+                                ...atomDark,
+                                'code[class*="language-"]': {
+                                  ...atomDark['code[class*="language-"]'],
+                                  background: '#1e1e1e',
+                                  color: '#d4d4d4',
+                                },
+                                'pre[class*="language-"]': {
+                                  ...atomDark['pre[class*="language-"]'],
+                                  background: '#1e1e1e',
+                                },
+                                'token.keyword': { color: '#569cd6' },
+                                'token.string': { color: '#ce9178' },
+                                'token.comment': { color: '#6a9955' },
+                                'token.number': { color: '#b5cea8' },
+                                'token.operator': { color: '#d4d4d4' },
+                                'token.punctuation': { color: '#d4d4d4' },
+                                'token.function': { color: '#dcdcaa' },
+                                'token.class-name': { color: '#4ec9b0' },
+                                'token.builtin': { color: '#4ec9b0' },
+                                'token.property': { color: '#9cdcfe' },
+                                'token.constant': { color: '#4fc1ff' },
+                              }}
                               customStyle={{
-                                background: 'transparent',
+                                background: '#1e1e1e',
                                 padding: '1rem',
                                 margin: 0,
                                 fontSize: '14px',
-                                lineHeight: '1.4',
+                                lineHeight: '1.5',
+                                fontFamily: "'Fira Code', 'Consolas', 'Monaco', monospace",
                               }}
                               showLineNumbers={true}
                               lineNumberStyle={{ 
-                                color: '#6B7280', 
+                                color: '#858585', 
                                 fontSize: '12px',
-                                paddingRight: '1rem'
+                                paddingRight: '1rem',
+                                minWidth: '2.5rem',
+                                textAlign: 'right'
                               }}
                             >
                               {currentProject.code}
