@@ -52,10 +52,14 @@ export const HeroSection = () => {
           </div>
 
           {/* Scroll Indicator */}
-          <div className="absolute bottom-8 left-1/2 transform -translate-x-1/2 animate-bounce">
+          <div className="absolute bottom-8 left-1/2 transform -translate-x-1/2">
             <div className="flex flex-col items-center text-muted-foreground">
-              <span className="text-sm mb-2 font-medium">Scroll to explore</span>
-              <div className="w-px h-8 bg-gradient-to-b from-primary to-transparent opacity-60"></div>
+              <span className="text-sm mb-4 font-medium">Scroll to explore</span>
+              <div className="mouse-scroll">
+                <div className="mouse">
+                  <div className="wheel"></div>
+                </div>
+              </div>
             </div>
           </div>
         </div>
