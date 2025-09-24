@@ -3,18 +3,41 @@ import { ArrowRight, Download } from "lucide-react";
 
 export const HeroSection = () => {
   return (
-    <section id="home" className="min-h-screen flex items-center justify-center relative overflow-hidden">
-      {/* Galaxy and Stars Background */}
-      <div className="galaxy-bg">
-        <div className="galaxy"></div>
-        <div className="stars"></div>
+    <section id="home" className="min-h-screen flex items-center justify-center relative overflow-hidden harry-potter-bg">
+      {/* Hogwarts Castle Silhouette */}
+      <div className="hogwarts-silhouette"></div>
+      
+      {/* Magical Stars Background */}
+      <div className="magical-stars">
+        <div className="star star-1"></div>
+        <div className="star star-2"></div>
+        <div className="star star-3"></div>
+        <div className="star star-4"></div>
+        <div className="star star-5"></div>
+        <div className="star star-6"></div>
       </div>
       
-      {/* Geometric Background Elements */}
-      <div className="geometric-bg">
-        <div className="geometric-shape shape-1"></div>
-        <div className="geometric-shape shape-2"></div>
-        <div className="geometric-shape shape-3"></div>
+      {/* Floating Candles */}
+      <div className="floating-candles">
+        <div className="candle candle-1"></div>
+        <div className="candle candle-2"></div>
+        <div className="candle candle-3"></div>
+        <div className="candle candle-4"></div>
+      </div>
+      
+      {/* Floating Spells */}
+      <div className="floating-spells">
+        <div className="spell spell-1">LUMOS⚡</div>
+        <div className="spell spell-2">Expelliarmus</div>
+        <div className="spell spell-3">Accio</div>
+        <div className="spell spell-4">🦡</div>
+      </div>
+      
+      {/* Marauder's Map Footprints */}
+      <div className="marauders-footprints">
+        <div className="footprint footprint-1">👣</div>
+        <div className="footprint footprint-2">👣</div>
+        <div className="footprint footprint-3">👣</div>
       </div>
 
       <div className="container mx-auto px-6 text-center relative z-10">
