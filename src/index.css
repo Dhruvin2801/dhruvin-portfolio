@@ -50,51 +50,25 @@
     --transition-spring: all 0.5s cubic-bezier(0.34, 1.56, 0.64, 1);
 
     --sidebar-background: 0 0% 98%;
+
     --sidebar-foreground: 240 5.3% 26.1%;
+
     --sidebar-primary: 240 5.9% 10%;
+
     --sidebar-primary-foreground: 0 0% 98%;
+
     --sidebar-accent: 240 4.8% 95.9%;
+
     --sidebar-accent-foreground: 240 5.9% 10%;
+
     --sidebar-border: 220 13% 91%;
+
     --sidebar-ring: 217.2 91.2% 59.8%;
   }
 
-  /* Light theme */
-  [data-theme="light"] {
-    --background: 0 0% 100%;
-    --foreground: 222.2 84% 4.9%;
-    --card: 0 0% 100%;
-    --card-foreground: 222.2 84% 4.9%;
-    --popover: 0 0% 100%;
-    --popover-foreground: 222.2 84% 4.9%;
-    --primary: 270 95% 50%;
-    --primary-foreground: 210 40% 98%;
-    --secondary: 210 40% 96%;
-    --secondary-foreground: 222.2 84% 4.9%;
-    --muted: 210 40% 96%;
-    --muted-foreground: 215.4 16.3% 46.9%;
-    --accent: 210 40% 96%;
-    --accent-foreground: 222.2 84% 4.9%;
-    --destructive: 0 84.2% 60.2%;
-    --destructive-foreground: 210 40% 98%;
-    --border: 214.3 31.8% 91.4%;
-    --input: 214.3 31.8% 91.4%;
-    --ring: 270 95% 50%;
-
-    /* Light theme custom tokens */
-    --hero-gradient: linear-gradient(135deg, hsl(270 95% 50%), hsl(260 90% 45%));
-    --text-gradient: linear-gradient(135deg, hsl(222.2 84% 4.9%), hsl(270 95% 50%));
-    --border-glow: 0 0 20px hsl(270 95% 50% / 0.4);
-    --shadow-elegant: 0 10px 30px -10px hsl(270 95% 50% / 0.3);
-  }
-
-  /* Theme system */
+  /* Force dark theme always */
   html {
     color-scheme: dark;
-  }
-  
-  html[data-theme="light"] {
-    color-scheme: light;
   }
 }
 
@@ -107,162 +81,94 @@
     @apply bg-background text-foreground;
     background-image: radial-gradient(circle at 25% 25%, hsl(270 95% 70% / 0.15) 0%, transparent 50%),
                       radial-gradient(circle at 75% 75%, hsl(260 90% 65% / 0.15) 0%, transparent 50%);
-    cursor: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='20' height='20' viewBox='0 0 20 20'%3E%3Cpath d='M10 2 L8 10 L10 18 L12 10 Z' fill='%23FFD700'/%3E%3Ccircle cx='10' cy='2' r='2' fill='%23FFD700'/%3E%3C/svg%3E"), auto;
   }
 
-  /* Wand cursor with glow on hover */
-  body:hover {
-    cursor: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='20' height='20' viewBox='0 0 20 20'%3E%3Cpath d='M10 2 L8 10 L10 18 L12 10 Z' fill='%23FFD700'/%3E%3Ccircle cx='10' cy='2' r='3' fill='%23FFD700' opacity='0.6'/%3E%3C/svg%3E"), auto;
-  }
-
-  /* Harry Potter Magical Background */
-  .harry-potter-bg {
-    background: linear-gradient(135deg, hsl(var(--background)) 0%, hsl(var(--background)/0.8) 100%);
-    position: relative;
-  }
-
-  /* Hogwarts Castle Silhouette */
-  .hogwarts-silhouette {
-    position: absolute;
-    bottom: 0;
-    left: 0;
-    right: 0;
-    height: 30%;
-    background: linear-gradient(to top, rgba(0,0,0,0.3) 0%, transparent 100%);
-    clip-path: polygon(10% 100%, 15% 85%, 20% 90%, 25% 75%, 30% 85%, 35% 70%, 40% 80%, 45% 65%, 50% 75%, 55% 60%, 60% 70%, 65% 55%, 70% 65%, 75% 50%, 80% 60%, 85% 45%, 90% 55%, 95% 40%, 100% 50%, 100% 100%);
-    opacity: 0.2;
-    z-index: 1;
-  }
-
-  /* Magical Twinkling Stars */
-  .magical-stars {
-    position: absolute;
+  /* Galaxy and Stars Animation */
+  .galaxy-bg {
+    position: fixed;
     top: 0;
     left: 0;
     width: 100%;
     height: 100%;
     pointer-events: none;
-    z-index: 2;
+    z-index: -2;
+    overflow: hidden;
   }
 
-  .star {
-    position: absolute;
-    color: #FFD700;
-    font-size: 8px;
-    animation: twinkle 3s ease-in-out infinite;
-  }
-
-  .star-1 { top: 20%; left: 15%; animation-delay: 0s; }
-  .star-2 { top: 30%; left: 80%; animation-delay: 1s; }
-  .star-3 { top: 60%; left: 70%; animation-delay: 2s; }
-  .star-4 { top: 15%; left: 60%; animation-delay: 0.5s; }
-  .star-5 { top: 45%; left: 20%; animation-delay: 1.5s; }
-  .star-6 { top: 70%; left: 90%; animation-delay: 2.5s; }
-
-  .star::before {
-    content: "✨";
-  }
-
-  /* Floating Candles */
-  .floating-candles {
+  .stars {
     position: absolute;
     top: 0;
     left: 0;
     width: 100%;
     height: 100%;
-    pointer-events: none;
-    z-index: 3;
+    background-image: 
+      radial-gradient(2px 2px at 20px 30px, hsl(270 95% 80%), transparent),
+      radial-gradient(2px 2px at 40px 70px, hsl(260 90% 75%), transparent),
+      radial-gradient(1px 1px at 90px 40px, hsl(270 95% 85%), transparent),
+      radial-gradient(1px 1px at 130px 80px, hsl(280 90% 80%), transparent),
+      radial-gradient(2px 2px at 160px 30px, hsl(270 95% 80%), transparent),
+      radial-gradient(1px 1px at 200px 100px, hsl(260 90% 75%), transparent),
+      radial-gradient(2px 2px at 250px 20px, hsl(270 95% 85%), transparent),
+      radial-gradient(1px 1px at 300px 60px, hsl(280 90% 80%), transparent);
+    background-repeat: repeat;
+    background-size: 350px 150px;
+    animation: stars-twinkle 4s ease-in-out infinite alternate;
   }
 
-  .candle {
-    position: absolute;
-    font-size: 16px;
-    animation: float 6s ease-in-out infinite;
-  }
-
-  .candle::before {
-    content: "🕯️";
-    filter: drop-shadow(0 0 10px rgba(255, 215, 0, 0.5));
-  }
-
-  .candle-1 { top: 25%; left: 10%; animation-delay: 0s; }
-  .candle-2 { top: 40%; left: 85%; animation-delay: 2s; }
-  .candle-3 { top: 60%; left: 15%; animation-delay: 4s; }
-  .candle-4 { top: 15%; left: 75%; animation-delay: 1s; }
-
-  /* Floating Spells */
-  .floating-spells {
+  .stars:before {
+    content: '';
     position: absolute;
     top: 0;
     left: 0;
     width: 100%;
     height: 100%;
-    pointer-events: none;
-    z-index: 4;
+    background-image: 
+      radial-gradient(1px 1px at 50px 80px, hsl(270 95% 90%), transparent),
+      radial-gradient(1px 1px at 150px 20px, hsl(260 90% 85%), transparent),
+      radial-gradient(1px 1px at 220px 90px, hsl(270 95% 90%), transparent),
+      radial-gradient(1px 1px at 280px 40px, hsl(280 90% 85%), transparent);
+    background-repeat: repeat;
+    background-size: 400px 200px;
+    animation: stars-twinkle 3s ease-in-out infinite alternate-reverse;
   }
 
-  .spell {
-    position: absolute;
-    font-family: 'Georgia', serif;
-    font-size: 14px;
-    color: #E6E6FA;
-    opacity: 0;
-    animation: spell-float 8s ease-in-out infinite;
-    text-shadow: 0 0 10px rgba(230, 230, 250, 0.5);
-  }
-
-  .spell-1 { top: 35%; left: 30%; animation-delay: 0s; }
-  .spell-2 { top: 55%; left: 60%; animation-delay: 3s; }
-  .spell-3 { top: 25%; left: 70%; animation-delay: 6s; }
-  .spell-4 { top: 45%; left: 40%; animation-delay: 1.5s; font-size: 20px; }
-
-  /* Marauder's Map Footprints */
-  .marauders-footprints {
+  .stars:after {
+    content: '';
     position: absolute;
     top: 0;
     left: 0;
     width: 100%;
     height: 100%;
-    pointer-events: none;
-    z-index: 2;
+    background-image: 
+      radial-gradient(1px 1px at 80px 10px, hsl(270 95% 95%), transparent),
+      radial-gradient(1px 1px at 180px 110px, hsl(260 90% 90%), transparent),
+      radial-gradient(1px 1px at 320px 70px, hsl(270 95% 95%), transparent);
+    background-repeat: repeat;
+    background-size: 500px 250px;
+    animation: stars-twinkle 5s ease-in-out infinite alternate;
   }
 
-  .footprint {
+  .galaxy {
     position: absolute;
-    font-size: 12px;
-    opacity: 0;
-    animation: footprint-walk 10s linear infinite;
-    color: rgba(139, 69, 19, 0.6);
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: 
+      radial-gradient(ellipse 800px 400px at 25% 40%, hsl(270 95% 70% / 0.08) 0%, transparent 50%),
+      radial-gradient(ellipse 600px 300px at 75% 60%, hsl(260 90% 65% / 0.06) 0%, transparent 50%),
+      radial-gradient(ellipse 1000px 200px at 50% 80%, hsl(280 85% 75% / 0.04) 0%, transparent 50%);
+    animation: galaxy-rotate 20s linear infinite;
   }
 
-  .footprint-1 { top: 80%; left: -5%; animation-delay: 0s; }
-  .footprint-2 { top: 75%; left: -5%; animation-delay: 3s; }
-  .footprint-3 { top: 85%; left: -5%; animation-delay: 6s; }
-
-  /* Keyframe Animations */
-  @keyframes twinkle {
-    0%, 100% { opacity: 0.3; transform: scale(1); }
-    50% { opacity: 1; transform: scale(1.2); }
+  @keyframes stars-twinkle {
+    0% { opacity: 0.3; transform: scale(1); }
+    100% { opacity: 1; transform: scale(1.1); }
   }
 
-  @keyframes float {
-    0%, 100% { transform: translateY(0px) rotate(0deg); }
-    33% { transform: translateY(-10px) rotate(2deg); }
-    66% { transform: translateY(5px) rotate(-1deg); }
-  }
-
-  @keyframes spell-float {
-    0% { opacity: 0; transform: translateX(0) translateY(0); }
-    25% { opacity: 1; transform: translateX(20px) translateY(-10px); }
-    75% { opacity: 1; transform: translateX(-20px) translateY(10px); }
-    100% { opacity: 0; transform: translateX(0) translateY(0); }
-  }
-
-  @keyframes footprint-walk {
-    0% { opacity: 0; left: -5%; }
-    20% { opacity: 0.6; }
-    80% { opacity: 0.6; }
-    100% { opacity: 0; left: 105%; }
+  @keyframes galaxy-rotate {
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
   }
 
   /* Geometric Background Elements */

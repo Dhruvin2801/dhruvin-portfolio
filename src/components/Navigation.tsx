@@ -1,5 +1,4 @@
 import { Button } from "@/components/ui/button";
-import { ThemeToggle } from "@/components/ThemeToggle";
 import { useState } from "react";
 
 export const Navigation = () => {
@@ -42,8 +41,7 @@ export const Navigation = () => {
           </div>
 
           {/* Get in Touch Button */}
-          <div className="hidden md:flex items-center gap-3">
-            <ThemeToggle />
+          <div className="hidden md:block">
             <Button variant="hero" size="sm">
               Get in Touch
             </Button>
@@ -78,10 +76,6 @@ export const Navigation = () => {
                   {item.label}
                 </a>
               ))}
-              <div className="flex items-center justify-between pt-2 border-t border-border/20">
-                <span className="text-sm text-muted-foreground">Theme</span>
-                <ThemeToggle />
-              </div>
               <Button variant="hero" size="sm" className="w-fit">
                 Get in Touch
               </Button>
