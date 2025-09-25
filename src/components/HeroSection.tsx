@@ -27,9 +27,10 @@ export const HeroSection = () => {
         <div className="max-w-4xl mx-auto">
           {/* Main Heading with Typing Animation */}
           <div className="animate-slide-up">
-            <h1 className="text-5xl md:text-7xl font-bold mb-6 leading-tight">
-              <span className="typing-text">Hi, I'm </span><span className="text-gradient typing-name">Dhruvin</span><span className="cursor">|</span>
-            </h1>
+          <h1 className="text-5xl md:text-7xl font-bold mb-6 leading-tight">
+             Hi, I'm <span className="text-gradient">Dhruvin</span>
+          </h1>
+
 
             <h2 className="text-2xl md:text-3xl text-muted-foreground mb-8 font-medium animate-fade-in-delay-1">
               MBA Business Analytics Student & Product Manager
