@@ -501,28 +501,3 @@
     overflow: hidden;
   }
 }
-
-
-/* === VSCode Dark+ Theme for Code Blocks === */
-pre, code {
-  background-color: #1E1E1E !important; /* Dark+ background */
-  color: #D4D4D4; /* Default text */
-  font-family: 'Fira Code', 'Consolas', monospace;
-  font-size: 0.9rem;
-  line-height: 1.5;
-  border-radius: 8px;
-  padding: 1rem;
-  overflow-x: auto;
-}
-
-/* Syntax highlighting */
-.token.comment { color: #6A9955; }
-.token.keyword { color: #569CD6; }
-.token.string { color: #CE9178; }
-.token.number { color: #B5CEA8; }
-.token.function,
-.token.class-name { color: #4EC9B0; }
-.token.operator { color: #D4D4D4; }
-.token.atrule,
-.token.attr-value { color: #DCDCAA; }
-
