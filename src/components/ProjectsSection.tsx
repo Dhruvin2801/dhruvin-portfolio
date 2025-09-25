@@ -5,73 +5,7 @@ import { Button } from "@/components/ui/button";
 import { Tabs, TabsList, TabsTrigger, TabsContent } from "@/components/ui/tabs";
 import { ExternalLink, Github, BarChart3, ShoppingCart, Users, Brain, FileText, Target } from "lucide-react";
 import { Prism as SyntaxHighlighter } from 'react-syntax-highlighter';
-
-// Custom IDE-style theme with exact colors
-const customIDETheme: { [key: string]: React.CSSProperties } = {
-  'code[class*="language-"]': {
-    color: '#ffffff',
-    background: '#1a1a1a',
-    fontFamily: 'Consolas, Monaco, "Andale Mono", "Ubuntu Mono", monospace',
-    fontSize: '14px',
-    lineHeight: '1.5',
-    textAlign: 'left' as const,
-    whiteSpace: 'pre' as const,
-    wordSpacing: 'normal',
-    wordBreak: 'normal' as const,
-    tabSize: 4,
-  },
-  'pre[class*="language-"]': {
-    color: '#ffffff',
-    background: '#1a1a1a',
-    fontFamily: 'Consolas, Monaco, "Andale Mono", "Ubuntu Mono", monospace',
-    fontSize: '14px',
-    lineHeight: '1.5',
-    textAlign: 'left' as const,
-    whiteSpace: 'pre' as const,
-    wordSpacing: 'normal',
-    wordBreak: 'normal' as const,
-    tabSize: 4,
-    padding: '1em',
-    margin: '0',
-    overflow: 'auto' as const,
-    borderRadius: '8px',
-  },
-  comment: { color: '#6B7280', fontStyle: 'italic' },
-  prolog: { color: '#6B7280' },
-  doctype: { color: '#6B7280' },
-  cdata: { color: '#6B7280' },
-  punctuation: { color: '#ffffff' },
-  property: { color: '#60A5FA' },
-  tag: { color: '#A78BFA' },
-  constant: { color: '#F59E0B' },
-  symbol: { color: '#F59E0B' },
-  deleted: { color: '#ef4444' },
-  boolean: { color: '#F59E0B' },
-  number: { color: '#F59E0B' },
-  selector: { color: '#34D399' },
-  'attr-name': { color: '#60A5FA' },
-  string: { color: '#34D399' },
-  char: { color: '#34D399' },
-  builtin: { color: '#60A5FA' },
-  inserted: { color: '#34D399' },
-  variable: { color: '#ffffff' },
-  operator: { color: '#ffffff' },
-  entity: { color: '#60A5FA', cursor: 'help' },
-  url: { color: '#60A5FA' },
-  '.language-css .token.string': { color: '#34D399' },
-  '.style .token.string': { color: '#34D399' },
-  atrule: { color: '#A78BFA' },
-  'attr-value': { color: '#34D399' },
-  keyword: { color: '#A78BFA' },
-  function: { color: '#60A5FA' },
-  'class-name': { color: '#60A5FA' },
-  regex: { color: '#34D399' },
-  important: { color: '#F59E0B', fontWeight: 'bold' },
-  namespace: { color: '#A78BFA' },
-  'maybe-class-name': { color: '#60A5FA' },
-  'parameter': { color: '#ffffff' },
-  'imports': { color: '#FCD34D' },
-};
+import { atomDark } from 'react-syntax-highlighter/dist/esm/styles/prism';
 
 export const ProjectsSection = () => {
   const [selectedProject, setSelectedProject] = useState(0);
@@ -586,10 +520,51 @@ class HyperparameterTuning:
                           <div className="p-0 h-80 overflow-auto">
                             <SyntaxHighlighter
                               language="typescript"
-                              style={customIDETheme}
-                              className="text-xs !p-4"
-                              showLineNumbers
-                              lineNumberStyle={{ color: '#6B7280', fontSize: '12px' }}
+                              style={{
+                                ...atomDark,
+                                'code[class*="language-"]': {
+                                  ...atomDark['code[class*="language-"]'],
+                                  background: '#1e1e1e',
+                                  color: '#d4d4d4',
+                                },
+                                'pre[class*="language-"]': {
+                                  ...atomDark['pre[class*="language-"]'],
+                                  background: '#1e1e1e',
+                                },
+                                'token.keyword': { color: '#569cd6' },
+                                'token.string': { color: '#ce9178' },
+                                'token.comment': { color: '#6a9955' },
+                                'token.number': { color: '#b5cea8' },
+                                'token.operator': { color: '#d4d4d4' },
+                                'token.punctuation': { color: '#d4d4d4' },
+                                'token.function': { color: '#dcdcaa' },
+                                'token.class-name': { color: '#4ec9b0' },
+                                'token.builtin': { color: '#4ec9b0' },
+                                'token.property': { color: '#9cdcfe' },
+                                'token.constant': { color: '#4fc1ff' },
+                                'token.variable': { color: '#9cdcfe' },
+                                'token.parameter': { color: '#9cdcfe' },
+                                'token.attr-name': { color: '#92c5f7' },
+                                'token.tag': { color: '#569cd6' },
+                                'token.deleted': { color: '#f85149' },
+                                'token.inserted': { color: '#56d364' },
+                              }}
+                              customStyle={{
+                                background: '#1e1e1e',
+                                padding: '1rem',
+                                margin: 0,
+                                fontSize: '14px',
+                                lineHeight: '1.5',
+                                fontFamily: "'Fira Code', 'Consolas', 'Monaco', monospace",
+                              }}
+                              showLineNumbers={true}
+                              lineNumberStyle={{ 
+                                color: '#858585', 
+                                fontSize: '12px',
+                                paddingRight: '1rem',
+                                minWidth: '2.5rem',
+                                textAlign: 'right'
+                              }}
                             >
                               {currentProject.code}
                             </SyntaxHighlighter>
