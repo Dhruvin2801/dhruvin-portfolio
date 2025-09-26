@@ -5,15 +5,15 @@ export const HeroSection = () => {
   return (
     <section
       id="home"
-      className="min-h-screen flex items-center justify-center relative overflow-hidden pt-24"
+      className="min-h-screen flex items-center justify-center relative overflow-hidden pt-36 md:pt-40"
     >
       {/* Enhanced Galaxy and Stars Background */}
-      <div className="fixed inset-0 -z-30 bg-background">
-        <div className="galaxy w-full h-full"></div>
-        <div className="stars w-full h-full"></div>
-        <div className="stars-layer-2 w-full h-full"></div>
-        <div className="nebula w-full h-full"></div>
-      </div>
+        <div className="fixed inset-0 z-0 pointer-events-none">
+          <div className="galaxy w-full h-full"></div>
+          <div className="stars w-full h-full"></div>
+          <div className="stars-layer-2 w-full h-full"></div>
+          <div className="nebula w-full h-full"></div>
+        </div>
 
       {/* Geometric Background Elements */}
       <div className="absolute inset-0 -z-20">
@@ -27,9 +27,9 @@ export const HeroSection = () => {
         <div className="max-w-4xl mx-auto">
           {/* Main Heading with Typing Animation */}
           <div className="animate-slide-up">
-          <h1 className="text-5xl md:text-7xl font-bold mb-6 leading-tight">
-             Hi, I'm <span className="text-gradient">Dhruvin</span>
-          </h1>
+            <h1 className="text-5xl md:text-7xl font-bold mb-6 leading-tight">
+               Hi, I'm <span className="text-gradient typewriter" style={{ ['--type-ch' as any]: 7, ['--type-duration' as any]: '2.2s' } as any}>Dhruvin</span>
+            </h1>
 
 
             <h2 className="text-2xl md:text-3xl text-muted-foreground mb-8 font-medium animate-fade-in-delay-1">
