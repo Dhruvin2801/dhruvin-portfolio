@@ -24,7 +24,7 @@
     --muted: 240 8% 15%;
     --muted-foreground: 240 5% 70%;
 
-    --accent: 135 85% 55%;
+    --accent: 270 100% 75%;
     --accent-foreground: 0 0% 98%;
 
     --destructive: 0 62.8% 30.6%;
@@ -32,14 +32,14 @@
 
     --border: 240 6% 22%;
     --input: 240 6% 22%;
-    --ring: 135 85% 55%;
+    --ring: 270 100% 75%;
 
     --radius: 0.75rem;
 
-    --hero-gradient: linear-gradient(135deg, hsl(135 85% 55%), hsl(140 90% 45%));
-    --text-gradient: linear-gradient(135deg, hsl(0 0% 98%), hsl(135 90% 65%));
-    --border-glow: 0 0 25px hsl(135 85% 55% / 0.5);
-    --shadow-elegant: 0 15px 35px -10px hsl(135 85% 55% / 0.4);
+    --hero-gradient: linear-gradient(135deg, hsl(270 100% 75%), hsl(260 95% 70%));
+    --text-gradient: linear-gradient(135deg, hsl(0 0% 98%), hsl(270 100% 85%));
+    --border-glow: 0 0 25px hsl(270 100% 75% / 0.5);
+    --shadow-elegant: 0 15px 35px -10px hsl(270 100% 75% / 0.4);
 
     --transition-smooth: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
     --transition-spring: all 0.5s cubic-bezier(0.34, 1.56, 0.64, 1);
@@ -66,8 +66,8 @@
 
   body {
     @apply bg-background text-foreground;
-    background-image: radial-gradient(circle at 25% 25%, hsl(135 85% 55% / 0.12) 0%, transparent 50%),
-      radial-gradient(circle at 75% 75%, hsl(140 90% 45% / 0.12) 0%, transparent 50%);
+    background-image: radial-gradient(circle at 25% 25%, hsl(270 100% 75% / 0.12) 0%, transparent 50%),
+      radial-gradient(circle at 75% 75%, hsl(260 95% 70% / 0.12) 0%, transparent 50%);
   }
 
   /* === Galaxy + Stars Background === */
@@ -86,9 +86,9 @@
     width: 1200px;
     height: 1200px;
     background: radial-gradient(ellipse 40% 80% at 50% 50%,
-        hsl(135 85% 55% / 0.10) 0%,
-        hsl(140 90% 50% / 0.06) 20%,
-        hsl(150 80% 45% / 0.04) 40%,
+        hsl(270 100% 75% / 0.10) 0%,
+        hsl(260 90% 65% / 0.06) 20%,
+        hsl(250 80% 60% / 0.04) 40%,
         transparent 70%);
     transform: translate(-50%, -50%);
     animation: galaxy-rotate 30s linear infinite;
@@ -132,11 +132,11 @@
     position: absolute;
     inset: 0;
     background:
-      radial-gradient(2px 2px at 20px 30px, hsl(135 90% 65% / 0.8), transparent),
+      radial-gradient(2px 2px at 20px 30px, hsl(270 100% 85% / 0.8), transparent),
       radial-gradient(2px 2px at 40px 70px, hsl(0 0% 100% / 0.9), transparent),
-      radial-gradient(1px 1px at 90px 40px, hsl(135 95% 75% / 0.7), transparent),
+      radial-gradient(1px 1px at 90px 40px, hsl(270 100% 90% / 0.7), transparent),
       radial-gradient(1px 1px at 130px 80px, hsl(0 0% 100% / 0.6), transparent),
-      radial-gradient(2px 2px at 160px 30px, hsl(150 100% 70% / 0.8), transparent);
+      radial-gradient(2px 2px at 160px 30px, hsl(280 100% 85% / 0.8), transparent);
     background-repeat: repeat;
     background-size: 250px 180px;
     animation: stars-twinkle 4s ease-in-out infinite alternate;
@@ -148,9 +148,9 @@
     inset: 0;
     background:
       radial-gradient(1px 1px at 50px 50px, hsl(0 0% 100% / 0.9), transparent),
-      radial-gradient(2px 2px at 100px 120px, hsl(135 90% 65% / 0.8), transparent),
+      radial-gradient(2px 2px at 100px 120px, hsl(270 100% 85% / 0.8), transparent),
       radial-gradient(1px 1px at 150px 60px, hsl(0 0% 100% / 0.7), transparent),
-      radial-gradient(1px 1px at 180px 10px, hsl(150 100% 70% / 0.6), transparent);
+      radial-gradient(1px 1px at 180px 10px, hsl(280 100% 90% / 0.6), transparent);
     background-repeat: repeat;
     background-size: 320px 220px;
     animation: stars-twinkle 3s ease-in-out infinite alternate-reverse;
@@ -168,9 +168,9 @@
     position: absolute;
     inset: 0;
     background:
-      radial-gradient(1px 1px at 80px 60px, hsl(135 90% 65% / 0.6), transparent),
+      radial-gradient(1px 1px at 80px 60px, hsl(270 100% 85% / 0.6), transparent),
       radial-gradient(1px 1px at 120px 140px, hsl(0 0% 100% / 0.8), transparent),
-      radial-gradient(2px 2px at 200px 80px, hsl(150 100% 70% / 0.5), transparent),
+      radial-gradient(2px 2px at 200px 80px, hsl(280 100% 90% / 0.5), transparent),
       radial-gradient(1px 1px at 40px 160px, hsl(0 0% 100% / 0.7), transparent);
     background-repeat: repeat;
     background-size: 280px 200px;
@@ -192,8 +192,8 @@
     width: 80%;
     height: 60%;
     background: radial-gradient(ellipse 60% 40% at 30% 70%,
-        hsl(135 85% 55% / 0.05) 0%,
-        hsl(150 90% 50% / 0.03) 30%,
+        hsl(270 100% 75% / 0.05) 0%,
+        hsl(280 90% 70% / 0.03) 30%,
         transparent 70%);
     animation: nebula-drift 40s ease-in-out infinite alternate;
   }
@@ -241,7 +241,7 @@
 
   .geometric-shape {
     position: absolute;
-    border: 1px solid hsl(135 85% 55% / 0.4);
+    border: 1px solid hsl(270 100% 75% / 0.4);
     border-radius: 8px;
     animation: float 6s ease-in-out infinite;
     backdrop-filter: blur(2px);
@@ -253,7 +253,7 @@
     width: 100px;
     height: 100px;
     animation-delay: 0s;
-    box-shadow: 0 0 15px hsl(135 85% 55% / 0.2);
+    box-shadow: 0 0 15px hsl(270 100% 75% / 0.2);
   }
 
   .shape-2 {
@@ -263,7 +263,7 @@
     height: 150px;
     animation-delay: 2s;
     transform: rotate(45deg);
-    box-shadow: 0 0 20px hsl(135 85% 55% / 0.15);
+    box-shadow: 0 0 20px hsl(270 100% 75% / 0.15);
   }
 
   .shape-3 {
@@ -273,7 +273,7 @@
     height: 80px;
     animation-delay: 4s;
     border-radius: 50%;
-    box-shadow: 0 0 12px hsl(135 85% 55% / 0.25);
+    box-shadow: 0 0 12px hsl(270 100% 75% / 0.25);
   }
 
   .shape-4 {
@@ -284,7 +284,7 @@
     animation-delay: 1s;
     border-radius: 50%;
     border: 1px solid hsl(280 100% 80% / 0.3);
-    box-shadow: 0 0 10px hsl(150 100% 70% / 0.2);
+    box-shadow: 0 0 10px hsl(280 100% 80% / 0.2);
   }
 
   @keyframes float {
@@ -307,7 +307,7 @@
   /* Buttons */
   .btn-hero {
     background: var(--hero-gradient);
-    border: 1px solid hsl(135 85% 55% / 0.6);
+    border: 1px solid hsl(270 95% 70% / 0.6);
     box-shadow: var(--shadow-elegant);
     transition: var(--transition-smooth);
   }
@@ -318,15 +318,15 @@
   }
 
   .btn-outline-hero {
-    border: 1px solid hsl(135 85% 55% / 0.6);
+    border: 1px solid hsl(270 95% 70% / 0.6);
     background: hsl(240 8% 12% / 0.8);
     backdrop-filter: blur(10px);
     transition: var(--transition-smooth);
   }
 
   .btn-outline-hero:hover {
-    border-color: hsl(135 85% 55%);
-    background: hsl(135 85% 55% / 0.15);
+    border-color: hsl(270 95% 70%);
+    background: hsl(270 95% 70% / 0.15);
     box-shadow: var(--border-glow);
   }
 
@@ -473,7 +473,7 @@
 
   .hover-lift:hover {
     transform: translateY(-3px);
-    box-shadow: var(--border-glow), 0 20px 40px -10px hsl(135 85% 55% / 0.3);
+    box-shadow: var(--border-glow), 0 20px 40px -10px hsl(270 100% 75% / 0.3);
   }
 
   @keyframes slide-up {
