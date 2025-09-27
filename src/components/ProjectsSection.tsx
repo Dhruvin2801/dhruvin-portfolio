@@ -130,23 +130,21 @@ def build_vgg16_classifier(input_shape, num_classes):
     },
     {
       id: 2,
-      title: "Price Modelling & Strategy for Breaking Games",
-      description: "Dynamic pricing models to forecast revenue growth and optimize pricing strategy using PED and ETP analysis.",
-      longDescription: "As a strategy consulting extern for Breaking Games, I modeled Price Elasticity of Demand (PED) and Expected Total Profit (ETP) across 4 flagship SKUs. This involved analyzing over 120 customer surveys to identify optimal price points, leading to recommendations for targeted pricing strategies projected to significantly increase revenue and profit margins.",
+      title: "Strategic Pricing Play for Breaking Games",
+      description: "Developed a hybrid pricing strategy using WTP and elasticity analysis to project a 27-32% revenue uplift.",
+      longDescription: "As a Strategy Extern for Breaking Games, I conducted a comprehensive market analysis to overhaul their pricing model. The project involved competitive benchmarking, customer WTP (Willingness-to-Pay) surveys, and elasticity modeling. I proposed a hybrid strategy combining value-based, tiered, and dynamic pricing for four key SKUs—Dwellings of Eldervale, King's Abbey, We're Doomed!, and Keep Calm!—projecting a 27-32% revenue increase and 35-39% margin growth.",
       icon: BarChart3,
       category: "Corporate",
-      technologies: ["Pricing Strategy", "Python", "Pandas", "Statistical Modeling", "Market Research"],
+      technologies: ["Pricing Strategy", "Competitive Analysis", "Market Research", "Statistical Modeling", "WTP Analysis", "Elasticity Modeling"],
       metrics: [
         "Projected 27–32% Revenue Uplift",
         "Projected 35–39% Margin Growth",
-        "Analysis of 120+ Surveys",
-        "Optimized Pricing Models"
+        "Analyzed Price Elasticity (b=1.19 to 1.82) for 4 SKUs",
+        "Developed a Hybrid (Value, Tiered, Dynamic) Pricing Model"
       ],
       status: "Completed",
-      presentationUrl: "https://www.canva.com/design/DAGzTMs-emg/7zO6xkhB5kmRG5FDSI3pkg/view?embed",
-      links: {
-        demo: "#"
-      }
+      presentationUrl: "https://www.canva.com/design/DAGmrCC5Bbo/BL2bmIq6_Ureo0WTbvuPjg/view?embed",
+      links: {}
     },
     {
       id: 3,
@@ -288,6 +286,43 @@ joblib.dump(model, 'posture_model.pkl')
         status: "Completed",
         presentationUrl: "https://www.canva.com/design/DAGxA1KOwrQ/nA9YYHgvXu1ldjvzpTWDYw/view?embed",
         links: {}
+    },
+    {
+        id: 9,
+        title: "Saregama Case Comp: Launching a Non-Film Superstar",
+        description: "Developed a 360° digital-first launch strategy to create India's next non-film music superstar, focusing on short-form content and community building.",
+        longDescription: "Crafted a comprehensive Go-to-Market strategy for Saregama to launch a 'glocal' alt-pop artist. The digital-first plan centers on creating a 'Fusion Innovator' archetype, using short-form video hooks (Reels/Shorts) for discovery and YouTube for deeper engagement. The strategy includes a 12-week phased rollout, seeding content with 100-300 micro-creators, and building a fan community via a 'Street Team' to achieve the North Star Metric of Monthly Active Fans.",
+        icon: Target,
+        category: "Case Competition",
+        technologies: ["Go-to-Market Strategy", "Digital Marketing", "Creator Economy", "Community Building", "Monetization Strategy", "Market Research"],
+        metrics: [
+          "Proposed a digital-first 360° GTM strategy",
+          "Targeted 1-1.5M Monthly Active Fans in 12 months",
+          "Projected 3-5 Cr revenue from diversified streams",
+          "Outlined seeding content to 100-300 micro-creators",
+          "Designed a phased 12-week launch campaign"
+        ],
+        status: "Completed",
+        presentationUrl: "https://www.canva.com/design/DAGxYNtLnWc/u-eptGA54qv44F44nBRGwQ/view?embed",
+        links: {}
+    },
+    {
+        id: 10,
+        title: "IIM Ahmedabad Masterplan: TrashDNA",
+        description: "Pitched 'TrashDNA,' an AI-powered mobile app to solve India's urban waste crisis by gamifying recycling at the source.",
+        longDescription: "For IIM Ahmedabad's Masterplan competition, I developed and pitched 'TrashDNA,' a venture tackling India's urban waste crisis. The solution is an AI-powered app that identifies waste materials from a photo, directs users to the correct bin, and rewards them, gamifying the sorting process. The business model targets municipalities (B2G), housing societies (B2B), and brands (EPR data), tapping into a $13-15B market. The venture is designed for high social impact—formalizing jobs and diverting waste from landfills—and scalability through a low-cost, modular, AI-first approach.",
+        icon: Brain,
+        category: "Case Competition",
+        technologies: ["Venture Design", "AI/ML Concepts", "Business Strategy", "Go-to-Market Strategy", "Financial Modeling", "Social Impact"],
+        metrics: [
+          "Pitched an AI solution for India's 62M tonnes/yr waste problem.",
+          "Targeted the $13-15B Indian waste management market.",
+          "Designed a scalable B2B/B2G SaaS revenue model.",
+          "Projected diversion of 2,000+ tonnes of waste from landfills annually.",
+          "Aimed to support 1,000+ safer, formalized jobs in recycling."
+        ],
+        status: "Completed",
+        links: {}
     }
   ];
 
@@ -304,14 +339,11 @@ joblib.dump(model, 'posture_model.pkl')
     project.category.toLowerCase().replace(/ /g, "-") === activeCategory
   );
 
-  // CORRECTED LOGIC: This hook now reliably syncs the preview with the filter.
   useEffect(() => {
-    // If the filtered list has projects, always set the preview to the first one.
-    // This removes the faulty conditional logic from the previous attempt.
     if (filteredProjects.length > 0) {
       setSelectedProject(filteredProjects[0].id);
     }
-  }, [activeCategory]); // This effect is triggered ONLY when the activeCategory changes.
+  }, [activeCategory]);
 
   const currentProject = projects.find(p => p.id === selectedProject) || filteredProjects[0] || projects[0];
 
@@ -519,7 +551,7 @@ joblib.dump(model, 'posture_model.pkl')
                             className="flex items-center p-3 bg-background/50 rounded-lg border border-border/50"
                           >
                             <div className="w-2 h-2 rounded-full bg-primary mr-3 flex-shrink-0"></div>
-                            <span className="text-sm">{metric}</span>
+                            <span className="text-sm" dangerouslySetInnerHTML={{ __html: metric }} />
                           </div>
                         ))}
                       </div>
