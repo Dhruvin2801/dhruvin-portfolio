@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { Card, CardContent } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
@@ -9,6 +9,7 @@ import { atomDark } from 'react-syntax-highlighter/dist/esm/styles/prism';
 
 export const ProjectsSection = () => {
   const [selectedProject, setSelectedProject] = useState(0);
+  const [activeCategory, setActiveCategory] = useState("all");
 
   // Color mapping for different categories
   const categoryColors = {
@@ -272,17 +273,17 @@ joblib.dump(model, 'posture_model.pkl')
     {
         id: 8,
         title: "Marico OWT Challenge: HaloMist Scalp-Tech",
-        [cite_start]description: "Proposed 'HaloMist', a warm micro-mist clip-on for Parachute oils, to modernize the hair oiling ritual for urban consumers. [cite: 1, 17, 68]",
-        [cite_start]longDescription: "As a National Finalist in the Marico Over The Wall Challenge, my team developed 'HaloMist,' a novel 'scalp-tech' device to address key consumer pain points like messy and time-consuming hair oiling. [cite: 1, 11, 18] [cite_start]The solution is a USB-C powered, clip-on micro-mist warmer for Parachute oil bottles, designed to create a clean, 5-minute, spa-like ritual. [cite: 17, 65, 68, 80] [cite_start]Our Go-to-Market strategy focused on D2C, e-commerce, and in-salon demonstrations to target time-pressed urban professionals, with detailed unit economics projecting a positive contribution margin. [cite: 111, 127, 214]",
+        description: "Proposed 'HaloMist', a warm micro-mist clip-on for Parachute oils, to modernize the hair oiling ritual for urban consumers.",
+        longDescription: "As a National Finalist in the Marico Over The Wall Challenge, my team developed 'HaloMist,' a novel 'scalp-tech' device to address key consumer pain points like messy and time-consuming hair oiling. The solution is a USB-C powered, clip-on micro-mist warmer for Parachute oil bottles, designed to create a clean, 5-minute, spa-like ritual. Our Go-to-Market strategy focused on D2C, e-commerce, and in-salon demonstrations to target time-pressed urban professionals, with detailed unit economics projecting a positive contribution margin.",
         icon: Target,
         category: "Case Competition",
         technologies: ["Go-to-Market Strategy", "Product Design", "Market Sizing", "Consumer Segmentation", "Unit Economics", "D2C Marketing"],
         metrics: [
           "Achieved National Finalist Position",
-          [cite_start]"Pitched for the ₹3,000 Cr Premium Haircare Market [cite: 4]",
-          [cite_start]"GTM plan to reach 10-15M high-intent users [cite: 241]",
-          [cite_start]"Projected 60,000+ pilot salon demos [cite: 155]",
-          [cite_start]"Calculated contribution of ₹140 per device [cite: 214, 218]"
+          [cite_start]"Pitched for the ₹3,000 Cr Premium Haircare Market" /* [cite: 4] */,
+          [cite_start]"GTM plan to reach 10-15M high-intent users" /* [cite: 239] */,
+          [cite_start]"Projected 60,000+ pilot salon demos" /* [cite: 242] */,
+          [cite_start]"Calculated contribution of ₹140 per device" /* [cite: 214] */
         ],
         status: "Completed",
         presentationUrl: "https://www.canva.com/design/DAGxA1KOwrQ/nA9YYHgvXu1ldjvzpTWDYw/view?embed",
@@ -298,14 +299,24 @@ joblib.dump(model, 'posture_model.pkl')
     { id: "academic", label: "Academic" }
   ];
 
-  const [activeCategory, setActiveCategory] = useState("all");
-
   const filteredProjects = projects.filter(project => 
     activeCategory === "all" || 
-    project.category.toLowerCase().replace(/ /g, "-") === active-category
+    project.category.toLowerCase().replace(/ /g, "-") === activeCategory
   );
 
-  const currentProject = projects.find(p => p.id === selectedProject) || projects[0];
+  // BUG FIX: This `useEffect` hook syncs the selected project with the category filter.
+  useEffect(() => {
+    if (filteredProjects.length > 0) {
+      // Check if the currently selected project is still in the filtered list.
+      const isSelectedProjectVisible = filteredProjects.some(p => p.id === selectedProject);
+      // If not, or if we want to always reset, set the selected project to the first one in the new list.
+      if (!isSelectedProjectVisible) {
+        setSelectedProject(filteredProjects[0].id);
+      }
+    }
+  }, [activeCategory, filteredProjects]); // Rerun when category changes
+
+  const currentProject = projects.find(p => p.id === selectedProject) || filteredProjects[0] || projects[0];
 
   return (
     <section id="projects" className="py-20 bg-secondary/20">
@@ -400,6 +411,7 @@ joblib.dump(model, 'posture_model.pkl')
             <div className="lg:w-[65%] w-full">
               <Card className="h-full bg-card/50 backdrop-blur-sm border-border/50">
                 <CardContent className="p-8 h-full overflow-y-auto">
+                 {currentProject && (
                   <div 
                     key={selectedProject} 
                     className="animate-fade-in"
@@ -510,7 +522,7 @@ joblib.dump(model, 'posture_model.pkl')
                             className="flex items-center p-3 bg-background/50 rounded-lg border border-border/50"
                           >
                             <div className="w-2 h-2 rounded-full bg-primary mr-3 flex-shrink-0"></div>
-                            <span className="text-sm">{metric}</span>
+                            <span className="text-sm" dangerouslySetInnerHTML={{ __html: metric }} />
                           </div>
                         ))}
                       </div>
@@ -554,6 +566,7 @@ joblib.dump(model, 'posture_model.pkl')
                       )}
                     </div>
                   </div>
+                 )}
                 </CardContent>
               </Card>
             </div>
