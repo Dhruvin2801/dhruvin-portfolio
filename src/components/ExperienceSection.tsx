@@ -5,43 +5,45 @@ import { CalendarDays, MapPin, TrendingUp } from "lucide-react";
 export const ExperienceSection = () => {
   const experiences = [
     {
-      title: "Product Manager Intern",
-      company: "Tech Startup",
-      location: "Remote",
-      duration: "Jun 2024 - Present",
-      description: "Led product discovery initiatives and managed cross-functional teams to deliver data-driven product features. Conducted user research and market analysis to identify growth opportunities.",
-      achievements: [
-        "Increased user engagement by 25% through feature optimization",
-        "Led agile development process for 3 product releases",
-        "Analyzed user behavior data to improve product-market fit"
-      ],
-      technologies: ["Product Analytics", "A/B Testing", "User Research", "Agile"]
-    },
-    {
-      title: "Business Analyst",
-      company: "Consulting Firm",
+      title: "Product Manager",
+      company: "ItTechies Services Pvt Ltd",
       location: "Mumbai, India",
-      duration: "Jan 2024 - May 2024",
-      description: "Provided strategic business insights through comprehensive data analysis and market research. Developed analytical frameworks to support client decision-making processes.",
+      duration: "June 2023 - May 2025",
+      description: "Led the implementation of an in-house HRMS, refined client ITSM/ITAM workflows, and managed the product roadmap for a mobile CRM application, driving significant improvements in operational efficiency and automation.",
       achievements: [
-        "Delivered strategic recommendations for 5+ client projects",
-        "Created automated reporting dashboards saving 20 hours/week",
-        "Conducted competitive analysis for market entry strategies"
+        "Reduced HR administrative workload by 40% by implementing a cloud-based HRMS platform.",
+        "Improved task closure efficiency by 40% through the development of a mobile CRM app for field engineers.",
+        "Cut client onboarding time by 40% and lowered helpdesk tickets by 25% by refining ITSM and ITAM workflows.",
+        "Automated the bulk quotation process using VBA, handling 150-200 requests daily in under 30 minutes."
       ],
-      technologies: ["SQL", "Python", "Tableau", "Excel"]
+      technologies: ["HRMS", "ITSM", "ITAM", "VBA Automation", "CRM", "Freshdesk"]
     },
     {
-      title: "Data Analytics Intern",
-      company: "E-commerce Platform",
-      location: "Bangalore, India", 
-      duration: "Sep 2023 - Dec 2023",
-      description: "Analyzed customer behavior patterns and sales data to optimize marketing campaigns and improve conversion rates. Built predictive models for demand forecasting.",
+      title: "Strategy & AI Extern",
+      company: "Extern",
+      location: "Remote",
+      duration: "January 2025 – August 2025",
+      description: "Completed four distinct, project-based externships focused on AI, people analytics, pricing strategy, and venture capital. Delivered data-driven recommendations and functional prototypes for companies including Amazon, Outamation, and IgniteXL Ventures.",
       achievements: [
-        "Improved marketing ROI by 18% through targeted campaigns",
-        "Built predictive models with 85% accuracy for demand forecasting",
-        "Optimized inventory management reducing costs by 12%"
+        "Engineered a full-stack RAG pipeline (LlamaIndex, Mistral-7B) to enable conversational Q&A on complex mortgage documents for Outamation.",
+        "Analyzed 500+ employee feedback entries for an Amazon Fulfilment Center using thematic coding and sentiment scoring to identify attrition drivers.",
+        "Modeled Price Elasticity of Demand (PED) for Breaking Games, identifying price points projected to deliver a 27-32% revenue uplift.",
+        "Conducted due diligence on a startup for IgniteXL Ventures using TAM–SAM–SOM sizing and CAC modeling to assess market feasibility."
       ],
-      technologies: ["Python", "R", "Machine Learning", "Statistics"]
+      technologies: ["RAG", "LlamaIndex", "People Analytics", "Pricing Strategy", "Venture Capital", "Due Diligence"]
+    },
+    {
+      title: "Python Developer Intern",
+      company: "ePayLater",
+      location: "Mumbai, India",
+      duration: "June 2021 - August 2021",
+      description: "Performed in-depth data analysis on large datasets to identify key trends and patterns. Designed and developed interactive visualizations to present performance metrics and analytical insights to stakeholders.",
+      achievements: [
+        "Performed Exploratory Data Analysis (EDA) using Python (Pandas, NumPy), including data cleaning and feature engineering.",
+        "Developed interactive data visualizations with Matplotlib and Seaborn to illustrate KPIs and correlations.",
+        "Enabled stakeholders to make data-driven decisions through clear presentation of analytical insights."
+      ],
+      technologies: ["Python", "Pandas", "NumPy", "Matplotlib", "Seaborn", "EDA"]
     }
   ];
 
