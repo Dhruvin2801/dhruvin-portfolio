@@ -479,17 +479,6 @@
     box-shadow: var(--border-glow), 0 20px 40px -10px hsl(25 95% 53% / 0.3);
   }
 
-  /* NEW - Added interactive class for experience cards */
-  .experience-card-interactive {
-    @apply transition-all duration-300;
-  }
-
-  .experience-card-interactive:hover {
-    @apply border-primary/50;
-    transform: translateY(-3px);
-    box-shadow: var(--border-glow), 0 20px 40px -10px hsl(25 95% 53% / 0.3);
-  }
-
   @keyframes slide-up {
     0% {
       opacity: 0;
@@ -520,15 +509,4 @@
     overflow: hidden;
   }
 }
-```
-
-I have added a new utility class, `.experience-card-interactive`, to your stylesheet. This class now contains the orange border, glow, and lift effect on hover.
-
-To apply this effect, you just need to replace the existing `hover:border-primary/50` class on your `Card` component in `ExperienceSection.tsx` with this new class.
-
-**Example JSX Change:**
-
-**From this:**
-```jsx
-<Card className="bg-card/50 backdrop-blur-sm border-border/50 hover:border-primary/50 transition-all duration-300 animate-slide-in">
 
