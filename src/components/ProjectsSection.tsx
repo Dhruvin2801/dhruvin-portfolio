@@ -280,10 +280,10 @@ joblib.dump(model, 'posture_model.pkl')
         technologies: ["Go-to-Market Strategy", "Product Design", "Market Sizing", "Consumer Segmentation", "Unit Economics", "D2C Marketing"],
         metrics: [
           "Achieved National Finalist Position",
-          [cite_start]"Pitched for the ₹3,000 Cr Premium Haircare Market" /* [cite: 4] */,
-          [cite_start]"GTM plan to reach 10-15M high-intent users" /* [cite: 239] */,
-          [cite_start]"Projected 60,000+ pilot salon demos" /* [cite: 242] */,
-          [cite_start]"Calculated contribution of ₹140 per device" /* [cite: 214] */
+          "Pitched for the ₹3,000 Cr Premium Haircare Market",
+          "GTM plan to reach 10-15M high-intent users",
+          "Projected 60,000+ pilot salon demos",
+          "Calculated contribution of ₹140 per device"
         ],
         status: "Completed",
         presentationUrl: "https://www.canva.com/design/DAGxA1KOwrQ/nA9YYHgvXu1ldjvzpTWDYw/view?embed",
@@ -304,17 +304,14 @@ joblib.dump(model, 'posture_model.pkl')
     project.category.toLowerCase().replace(/ /g, "-") === activeCategory
   );
 
-  // BUG FIX: This `useEffect` hook syncs the selected project with the category filter.
+  // CORRECTED LOGIC: This hook now reliably syncs the preview with the filter.
   useEffect(() => {
+    // If the filtered list has projects, always set the preview to the first one.
+    // This removes the faulty conditional logic from the previous attempt.
     if (filteredProjects.length > 0) {
-      // Check if the currently selected project is still in the filtered list.
-      const isSelectedProjectVisible = filteredProjects.some(p => p.id === selectedProject);
-      // If not, or if we want to always reset, set the selected project to the first one in the new list.
-      if (!isSelectedProjectVisible) {
-        setSelectedProject(filteredProjects[0].id);
-      }
+      setSelectedProject(filteredProjects[0].id);
     }
-  }, [activeCategory, filteredProjects]); // Rerun when category changes
+  }, [activeCategory]); // This effect is triggered ONLY when the activeCategory changes.
 
   const currentProject = projects.find(p => p.id === selectedProject) || filteredProjects[0] || projects[0];
 
@@ -522,7 +519,7 @@ joblib.dump(model, 'posture_model.pkl')
                             className="flex items-center p-3 bg-background/50 rounded-lg border border-border/50"
                           >
                             <div className="w-2 h-2 rounded-full bg-primary mr-3 flex-shrink-0"></div>
-                            <span className="text-sm" dangerouslySetInnerHTML={{ __html: metric }} />
+                            <span className="text-sm">{metric}</span>
                           </div>
                         ))}
                       </div>
