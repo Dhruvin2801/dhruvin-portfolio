@@ -3,7 +3,7 @@ import { Card, CardContent } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
 import { Tabs, TabsList, TabsTrigger, TabsContent } from "@/components/ui/tabs";
-import { ExternalLink, Github, BarChart3, ShoppingCart, Users, Brain, FileText, Target } from "lucide-react";
+import { ExternalLink, Github, BarChart3, ShoppingCart, Users, Brain, FileText, Target, Activity, Box, Database, Sigma } from "lucide-react";
 import { Prism as SyntaxHighlighter } from 'react-syntax-highlighter';
 import { atomDark } from 'react-syntax-highlighter/dist/esm/styles/prism';
 
@@ -113,17 +113,7 @@ def build_vgg16_classifier(input_shape, num_classes):
         
     model.compile(optimizer='adam', loss='categorical_crossentropy', metrics=['accuracy'])
     return model
-
-# Load data and preprocess (CLAHE, gamma correction)
-# ...
-
-# Train segmentation model
-segmentation_model = build_unet_model((256, 256, 3))
-segmentation_model.fit(train_images, train_masks, ...)
-
-# Train classification model
-classifier_model = build_vgg16_classifier((224, 224, 3), 5)
-classifier_model.fit(train_images_classified, train_labels, ...)`
+`
 ,
       links: {
         paper: "https://ieeexplore.ieee.org/document/10169720"
@@ -175,7 +165,7 @@ classifier_model.fit(train_images_classified, train_labels, ...)`
       description: "Designed the GTM strategy for a street-market B2B retail-tech startup, including STP and ROI modeling.",
       longDescription: "In this academic marketing project, I designed a comprehensive go-to-market strategy for 'TryNow,' a B2B retail-tech concept. The project involved conducting market research with over 120 shoppers, leading Segmentation, Targeting, and Positioning (STP) analysis, and creating detailed ROI models. I also applied 4P and PESTEL frameworks to set a pricing strategy that enabled vendor breakeven within 31-48 days.",
       icon: ShoppingCart,
-      category: "Academic",
+      category: "Case Competition",
       technologies: ["Marketing Strategy", "STP", "ROI Modeling", "4P & PESTEL Analysis", "Market Research"],
       metrics: [
         "Vendor Breakeven in 31–48 days",
@@ -194,7 +184,7 @@ classifier_model.fit(train_images_classified, train_labels, ...)`
       title: "COVID-19 Contactless Delivery System",
       description: "IoT-enabled delivery container using NodeMCU for secure, remote door control via a web interface.",
       longDescription: "Designed and implemented an IoT-enabled delivery container using NodeMCU ESP8266, a servo motor, and a solenoid locking mechanism. This system achieved secure, remote door control via a responsive web-based interface (HTML/CSS), enabling contactless delivery of groceries and essentials to enhance safety during the pandemic.",
-      icon: FileText,
+      icon: Box,
       category: "Publications",
       technologies: ["IoT", "NodeMCU", "HTML/CSS", "Hardware Integration", "Arduino"],
       metrics: [
@@ -208,6 +198,51 @@ classifier_model.fit(train_images_classified, train_labels, ...)`
       links: {
         paper: "#"
       }
+    },
+    {
+      id: 6,
+      title: "Smart Posture Corrector",
+      description: "IoT and ML-based system for real-time posture analytics and alerting.",
+      longDescription: "Engineered a posture correction system using Arduino, flex sensors, and a buzzer, integrated with a responsive web interface. The system uses a Python-based logistic regression model (87% accuracy) for real-time posture analytics and features a smartphone module leveraging accelerometer and gyroscope APIs for portable monitoring.",
+      icon: Activity,
+      category: "Publications",
+      technologies: ["IoT", "Arduino", "Python", "Machine Learning", "JavaScript", "HTML/CSS"],
+      metrics: [
+        "87% Model Accuracy",
+        "Real-Time Posture Analytics",
+        "Smartphone-Based Monitoring",
+        "Published in Journal"
+      ],
+      status: "Completed",
+      code: `import pandas as pd
+from sklearn.model_selection import train_test_split
+from sklearn.linear_model import LogisticRegression
+from sklearn.metrics import accuracy_score
+import joblib
+
+# Load sensor data (flex sensor, accelerometer, gyroscope)
+data = pd.read_csv('posture_data.csv')
+X = data[['flex_angle', 'accel_x', 'accel_y', 'gyro_z']]
+y = data['is_correct_posture'] # 0 for incorrect, 1 for correct
+
+# Split data for training and testing
+X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.2, random_state=42)
+
+# Train a Logistic Regression model
+model = LogisticRegression()
+model.fit(X_train, y_train)
+
+# Evaluate the model
+y_pred = model.predict(X_test)
+accuracy = accuracy_score(y_test, y_pred)
+print(f"Model Accuracy: {accuracy * 100:.2f}%")
+
+# Save the trained model for deployment on a server
+joblib.dump(model, 'posture_model.pkl')
+`,
+      links: {
+        paper: "#"
+      }
     }
   ];
 
@@ -215,6 +250,7 @@ classifier_model.fit(train_images_classified, train_labels, ...)`
     { id: "all", label: "All" },
     { id: "corporate", label: "Corporate" },
     { id: "publications", label: "Publications" },
+    { id: "case-competition", label: "Case Competitions" },
     { id: "academic", label: "Academic" }
   ];
 
@@ -222,7 +258,7 @@ classifier_model.fit(train_images_classified, train_labels, ...)`
 
   const filteredProjects = projects.filter(project => 
     activeCategory === "all" || 
-    project.category.toLowerCase().replace(" ", "-") === activeCategory
+    project.category.toLowerCase().replace(/ /g, "-") === activeCategory
   );
 
   const currentProject = projects.find(p => p.id === selectedProject) || projects[0];
@@ -244,7 +280,7 @@ classifier_model.fit(train_images_classified, train_labels, ...)`
 
           {/* Category Tabs */}
           <Tabs value={activeCategory} onValueChange={setActiveCategory} className="mb-8">
-            <TabsList className="grid w-full grid-cols-2 lg:grid-cols-4 bg-card/50 backdrop-blur-sm">
+            <TabsList className="grid w-full grid-cols-2 sm:grid-cols-3 lg:grid-cols-5 bg-card/50 backdrop-blur-sm">
               {categories.map((category) => (
                 <TabsTrigger 
                   key={category.id} 
