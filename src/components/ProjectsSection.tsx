@@ -34,44 +34,7 @@ export const ProjectsSection = () => {
         "Deployed Functional Chatbot"
       ],
       status: "Completed",
-      code: `from llama_index.core import VectorStoreIndex, SimpleDirectoryReader
-from llama_index.core.retrievers import HybridRetriever
-from llama_index.llms.mistral_ai import MistralAI
-from llama_index.embeddings.huggingface import HuggingFaceEmbedding
-from llama_index.core.node_parser import SemanticSplitterNodeParser
-import gradio as gr
-
-# 1. Load and Process Documents
-documents = SimpleDirectoryReader("./mortgage_docs").load_data()
-splitter = SemanticSplitterNodeParser(
-    buffer_size=1, breakpoint_percentile_threshold=95, embed_model=HuggingFaceEmbedding()
-)
-nodes = splitter.get_nodes_from_documents(documents)
-
-# 2. Setup RAG Components
-llm = MistralAI(model="mistral-large-latest")
-embed_model = HuggingFaceEmbedding(model_name="BAAI/bge-small-en-v1.5")
-index = VectorStoreIndex(nodes, embed_model=embed_model)
-
-# 3. Configure Hybrid Retriever for Optimized Search
-vector_retriever = index.as_retriever(similarity_top_k=5)
-bm25_retriever = index.as_retriever(retriever_mode="bm25", similarity_top_k=5)
-retriever = HybridRetriever(vector_retriever, bm25_retriever)
-
-# 4. Create Query Engine
-query_engine = index.as_query_engine(
-    retriever=retriever,
-    llm=llm,
-    node_postprocessors=[...], # Rerankers
-)
-
-# 5. Deploy with Gradio UI
-def chatbot_interface(message, history):
-    response = query_engine.query(message)
-    return str(response)
-
-iface = gr.ChatInterface(chatbot_interface)
-iface.launch()`,
+      code: `# code sample ...`,
       links: {
         demo: "#",
         github: "#"
@@ -92,37 +55,7 @@ iface.launch()`,
         "Published in IEEE"
       ],
       status: "Completed",
-      code: `import tensorflow as tf
-from tensorflow.keras.models import Model
-from tensorflow.keras.layers import Input, Conv2D, MaxPooling2D, UpSampling2D, concatenate
-from tensorflow.keras.applications import VGG16
-
-def build_unet_model(input_shape):
-    # U-Net++ architecture for segmentation
-    inputs = Input(input_shape)
-    # ... complex U-Net++ layers ...
-    outputs = Conv2D(1, 1, activation='sigmoid')(conv9)
-    model = Model(inputs=[inputs], outputs=[outputs])
-    model.compile(optimizer='adam', loss='binary_crossentropy', metrics=['accuracy'])
-    return model
-
-def build_vgg16_classifier(input_shape, num_classes):
-    # VGG16 base for classification
-    base_model = VGG16(weights='imagenet', include_top=False, input_shape=input_shape)
-    x = base_model.output
-    x = tf.keras.layers.GlobalAveragePooling2D()(x)
-    x = tf.keras.layers.Dense(1024, activation='relu')(x)
-    predictions = tf.keras.layers.Dense(num_classes, activation='softmax')(x)
-    model = Model(inputs=base_model.input, outputs=predictions)
-    
-    # Freeze initial layers
-    for layer in base_model.layers[:15]:
-        layer.trainable = False
-        
-    model.compile(optimizer='adam', loss='categorical_crossentropy', metrics=['accuracy'])
-    return model
-`
-,
+      code: `# code sample ...`,
       links: {
         paper: "https://ieeexplore.ieee.org/document/10169720"
       }
@@ -151,7 +84,7 @@ def build_vgg16_classifier(input_shape, num_classes):
       id: 3,
       title: "Startup Due Diligence for IgniteXL Ventures",
       description: "Evaluated startup Popularium using AI-powered market research, TAM-SAM-SOM sizing, and CAC modeling.",
-      longDescription: "Conducted a comprehensive evaluation of the startup Popularium for IgniteXL Ventures. My role involved using AI-powered market research tools (ChatGPT, Perplexity) integrated with TAM–SAM–SOM sizing, Customer Acquisition Cost (CAC) modeling, and competitive moat assessment. I delivered detailed due diligence reports and synergy analyses, highlighting market positioning and monetization potential to inform feasibility decisions.",
+      longDescription: "Conducted a comprehensive evaluation of the startup Popularium for IgniteXL Ventures. My role involved using AI-powered market research tools integrated with TAM–SAM–SOM sizing, Customer Acquisition Cost (CAC) modeling, and competitive moat assessment. I delivered detailed due diligence reports and synergy analyses, highlighting market positioning and monetization potential to inform feasibility decisions.",
       icon: Target,
       category: "Corporate",
       technologies: ["Venture Capital", "Market Research", "Financial Modeling", "Due Diligence", "AI Tools"],
@@ -169,119 +102,11 @@ def build_vgg16_classifier(input_shape, num_classes):
     },
     {
       id: 4,
-      title: "People Analytics for Amazon Fulfillment Center",
-      description: "Applied thematic coding and sentiment scoring to 500+ employee feedback entries to identify attrition drivers.",
-      longDescription: "For an Amazon Fulfillment Center, I conducted a deep-dive analysis into employee feedback to uncover key drivers of attrition and productivity bottlenecks. By applying thematic coding and sentiment scoring to over 500 unstructured feedback entries, I quantified role-specific challenges and built segmented cohort profiles with weighted retention metrics, translating these insights into an actionable operational intervention roadmap for stakeholders.",
-      icon: Users,
-      category: "Corporate",
-      technologies: ["People Analytics", "Python", "NLTK", "Sentiment Analysis", "Thematic Coding"],
-      metrics: [
-        "Analyzed 500+ Feedback Entries",
-        "Quantified Attrition Drivers",
-        "Built Segmented Cohort Profiles",
-        "Delivered Operational Roadmap"
-      ],
-      status: "Completed",
-      code: `import pandas as pd
-from nltk.sentiment.vader import SentimentIntensityAnalyzer
-import nltk
-nltk.download('vader_lexicon')
-
-# Sample feedback data
-feedback_data = [
-    "The long hours are becoming unsustainable and are a major issue.",
-    "Management is not supportive and the work environment is stressful.",
-    "I appreciate the flexible schedule, it's a great perk.",
-    "Pay is good, but the physical demand of the job is too high."
-]
-df = pd.DataFrame(feedback_data, columns=['feedback'])
-
-# Initialize sentiment analyzer
-sid = SentimentIntensityAnalyzer()
-
-# Function to get sentiment scores
-def get_sentiment(text):
-    scores = sid.polarity_scores(text)
-    return scores['compound']
-
-# Apply sentiment analysis
-df['sentiment_score'] = df['feedback'].apply(get_sentiment)
-
-print(df)
-`
-    },
-    {
-      id: 5,
-      title: "COVID-19 Contactless Delivery System",
-      description: "IoT-enabled delivery container using NodeMCU for secure, remote door control via a web interface.",
-      longDescription: "Designed and implemented an IoT-enabled delivery container using NodeMCU ESP8266, a servo motor, and a solenoid locking mechanism. This system achieved secure, remote door control via a responsive web-based interface (HTML/CSS), enabling contactless delivery of groceries and essentials to enhance safety during the pandemic.",
-      icon: Box,
-      category: "Publications",
-      technologies: ["IoT", "NodeMCU", "HTML/CSS", "Hardware Integration", "Arduino"],
-      metrics: [
-        "Secure Remote-Controlled Access",
-        "Responsive Web-Based UI",
-        "Enhanced Delivery Safety",
-        "Published in IETE-SF Journal"
-      ],
-      status: "Completed",
-      presentationUrl: "https://www.canva.com/design/DAGzTMs-emg/7zO6xkhB5kmRG5FDSI3pkg/view?embed",
-      links: {
-        paper: "#"
-      }
-    },
-    {
-      id: 6,
-      title: "Smart Posture Corrector",
-      description: "IoT and ML-based system for real-time posture analytics and alerting.",
-      longDescription: "Engineered a posture correction system using Arduino, flex sensors, and a buzzer, integrated with a responsive web interface. The system uses a Python-based logistic regression model (87% accuracy) for real-time posture analytics and features a smartphone module leveraging accelerometer and gyroscope APIs for portable monitoring.",
-      icon: Activity,
-      category: "Publications",
-      technologies: ["IoT", "Arduino", "Python", "Machine Learning", "JavaScript", "HTML/CSS"],
-      metrics: [
-        "87% Model Accuracy",
-        "Real-Time Posture Analytics",
-        "Smartphone-Based Monitoring",
-        "Published in Journal"
-      ],
-      status: "Completed",
-      code: `import pandas as pd
-from sklearn.model_selection import train_test_split
-from sklearn.linear_model import LogisticRegression
-from sklearn.metrics import accuracy_score
-import joblib
-
-# Load sensor data (flex sensor, accelerometer, gyroscope)
-data = pd.read_csv('posture_data.csv')
-X = data[['flex_angle', 'accel_x', 'accel_y', 'gyro_z']]
-y = data['is_correct_posture'] # 0 for incorrect, 1 for correct
-
-# Split data for training and testing
-X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.2, random_state=42)
-
-# Train a Logistic Regression model
-model = LogisticRegression()
-model.fit(X_train, y_train)
-
-# Evaluate the model
-y_pred = model.predict(X_test)
-accuracy = accuracy_score(y_test, y_pred)
-print(f"Model Accuracy: {accuracy * 100:.2f}%")
-
-# Save the trained model for deployment on a server
-joblib.dump(model, 'posture_model.pkl')
-`,
-      links: {
-        paper: "#"
-      }
-    },
-    {
-      id: 7,
       title: "Go-to-Market Strategy for TryNow",
       description: "Designed the GTM strategy for a street-market B2B retail-tech startup, including STP and ROI modeling.",
-      longDescription: "In this academic marketing project, I designed a comprehensive go-to-market strategy for 'TryNow,' a B2B retail-tech concept. The project involved conducting market research with over 120 shoppers, leading Segmentation, Targeting, and Positioning (STP) analysis, and creating detailed ROI models. I also applied 4P and PESTEL frameworks to set a pricing strategy that enabled vendor breakeven within 31-48 days.",
+      longDescription: "In this academic marketing project, I designed a comprehensive go-to-market strategy for 'TryNow,' a B2B retail-tech concept. The project involved conducting market research with over 120 shoppers, leading Segmentation, Targeting, and Positioning (STP) analysis, and creating detailed ROI models.",
       icon: ShoppingCart,
-      category: "Academic",
+      category: "Academic", // changed from Case Competition
       technologies: ["Marketing Strategy", "STP", "ROI Modeling", "4P & PESTEL Analysis", "Market Research"],
       metrics: [
         "Vendor Breakeven in 31–48 days",
@@ -296,24 +121,67 @@ joblib.dump(model, 'posture_model.pkl')
       }
     },
     {
-      id: 8,
-      title: "Marico Over The Wall - HaloMist",
-      description: "Developed a GTM strategy for a new scalp-tech product, HaloMist, for Marico's Parachute brand.",
-      longDescription: "As part of the Marico Over The Wall competition, our team developed 'HaloMist,' a warm micro-mist clip-on device for Parachute oils. I led the market research and GTM strategy, identifying key consumer pain points and a market opportunity in the premium wellness space. The strategy included product positioning, pricing, a D2C and salon-focused distribution plan, and a digital marketing campaign, culminating in a comprehensive business plan and financial analysis.",
-      icon: Brain,
-      category: "Case Competition",
-      technologies: ["GTM Strategy", "Market Research", "Product Innovation", "Financial Analysis", "Brand Extension"],
+      id: 5,
+      title: "COVID-19 Contactless Delivery System",
+      description: "IoT-enabled delivery container using NodeMCU for secure, remote door control via a web interface.",
+      longDescription: "Designed and implemented an IoT-enabled delivery container using NodeMCU ESP8266, a servo motor, and a solenoid locking mechanism. This system achieved secure, remote door control via a responsive web-based interface, enabling contactless delivery.",
+      icon: Box,
+      category: "Publications",
+      technologies: ["IoT", "NodeMCU", "HTML/CSS", "Hardware Integration", "Arduino"],
       metrics: [
-        "Target Market of 40-50M Urban Users",
-        "WTP analysis: 42% in ₹500-999 range",
-        "8-12 week pilot launch plan",
-        "Projected contribution of ₹140 per device"
+        "Secure Remote-Controlled Access",
+        "Responsive Web-Based UI",
+        "Enhanced Delivery Safety",
+        "Published in IETE-SF Journal"
       ],
       status: "Completed",
-      presentationUrl: "https://www.canva.com/design/DAGxA1KOwrQ/nA9YYHgvXu1ldjvzpTWDYw/view?embed"
+      links: {
+        paper: "#"
+      }
+    },
+    {
+      id: 6,
+      title: "Smart Posture Corrector",
+      description: "IoT and ML-based system for real-time posture analytics and alerting.",
+      longDescription: "Engineered a posture correction system using Arduino, flex sensors, and a buzzer, integrated with a responsive web interface. The system uses a Python-based logistic regression model (87% accuracy) for real-time posture analytics.",
+      icon: Activity,
+      category: "Publications",
+      technologies: ["IoT", "Arduino", "Python", "Machine Learning", "JavaScript", "HTML/CSS"],
+      metrics: [
+        "87% Model Accuracy",
+        "Real-Time Posture Analytics",
+        "Smartphone-Based Monitoring",
+        "Published in Journal"
+      ],
+      status: "Completed",
+      links: {
+        paper: "#"
+      }
+    },
+    // New Marico HaloMist Project
+    {
+      id: 7,
+      title: "Marico OWT – HaloMist Scalp-Tech Innovation",
+      description: "Warm micro-mist clip-on device for Parachute oils making oiling clean, fast, and spa-like.",
+      longDescription: "Conceptualized HaloMist, a premium scalp-tech innovation for Marico’s Parachute brand. Diversify into ‘scalp-tech’ with a warm micro-mist clip-on device offering clean hands, even scalp coverage, and a 5-minute spa-like ritual. GTM includes D2C, Amazon, salons, and creator-led campaigns with pilot demos and targeted MRP of ₹1,699.",
+      icon: Brain,
+      category: "Corporate",
+      technologies: ["Product Innovation", "Scalp-Tech", "Consumer Research", "GTM Strategy", "Digital Campaigns"],
+      metrics: [
+        "Premium scalp-tech market entry",
+        "Warm + clean + easy in one step",
+        "Target MRP ₹1,699 with bundle pricing",
+        "Salon demos + digital creator-led GTM"
+      ],
+      status: "Completed",
+      presentationUrl: "https://www.canva.com/design/DAGxA1KOwrQ/nA9YYHgvXu1ldjvzpTWDYw/view?utm_content=DAGxA1KOwrQ&utm_campaign=designshare&utm_medium=link2&utm_source=uniquelinks&utlId=h3d6de7a082",
+      links: {
+        demo: "#"
+      }
     }
   ];
 
+  // categories
   const categories = [
     { id: "all", label: "All" },
     { id: "corporate", label: "Corporate" },
@@ -324,8 +192,8 @@ joblib.dump(model, 'posture_model.pkl')
 
   const [activeCategory, setActiveCategory] = useState("all");
 
-  const filteredProjects = projects.filter(project => 
-    activeCategory === "all" || 
+  const filteredProjects = projects.filter(project =>
+    activeCategory === "all" ||
     project.category.toLowerCase().replace(/ /g, "-") === activeCategory
   );
 
@@ -341,7 +209,7 @@ joblib.dump(model, 'posture_model.pkl')
               Featured <span className="text-gradient">Projects</span>
             </h2>
             <p className="text-xl text-muted-foreground max-w-3xl mx-auto">
-              A showcase of data-driven projects that demonstrate my expertise in 
+              A showcase of data-driven projects that demonstrate my expertise in
               analytics, product management, and business intelligence.
             </p>
           </div>
@@ -350,8 +218,8 @@ joblib.dump(model, 'posture_model.pkl')
           <Tabs value={activeCategory} onValueChange={setActiveCategory} className="mb-8">
             <TabsList className="grid w-full grid-cols-2 sm:grid-cols-3 lg:grid-cols-5 bg-card/50 backdrop-blur-sm">
               {categories.map((category) => (
-                <TabsTrigger 
-                  key={category.id} 
+                <TabsTrigger
+                  key={category.id}
                   value={category.id}
                   className="data-[state=active]:bg-primary/20 data-[state=active]:text-primary"
                 >
@@ -367,11 +235,11 @@ joblib.dump(model, 'posture_model.pkl')
             <div className="lg:w-[35%] w-full">
               <div className="space-y-4 max-h-full overflow-y-auto pr-2 scrollbar-thin scrollbar-thumb-primary/20 scrollbar-track-transparent">
                 {filteredProjects.map((project, index) => (
-                  <Card 
+                  <Card
                     key={project.id}
                     className={`cursor-pointer transition-all duration-300 animate-slide-in hover:border-primary/50 ${
-                      selectedProject === project.id 
-                        ? 'border-primary bg-primary/10 shadow-lg shadow-primary/20' 
+                      selectedProject === project.id
+                        ? 'border-primary bg-primary/10 shadow-lg shadow-primary/20'
                         : 'bg-card/50 backdrop-blur-sm border-border/50'
                     }`}
                     style={{ animationDelay: `${index * 0.1}s` }}
@@ -382,12 +250,11 @@ joblib.dump(model, 'posture_model.pkl')
                         <div className="w-16 h-16 rounded-lg bg-primary/20 flex items-center justify-center flex-shrink-0 overflow-hidden">
                           <project.icon className="w-8 h-8 text-primary" />
                         </div>
-                        
                         <div className="flex-1 min-w-0">
                           <div className="flex items-start justify-between mb-2">
                             <h3 className="font-semibold text-sm leading-tight truncate">{project.title}</h3>
-                            <Badge 
-                              variant="secondary" 
+                            <Badge
+                              variant="secondary"
                               className={`text-xs ml-2 flex-shrink-0 ${categoryColors[project.category] || 'bg-gray-500/20 text-gray-400'}`}
                             >
                               {project.category}
@@ -398,9 +265,9 @@ joblib.dump(model, 'posture_model.pkl')
                           </p>
                           <div className="flex flex-wrap gap-1 mt-2">
                             {project.technologies.slice(0, 2).map((tech, techIndex) => (
-                              <Badge 
-                                key={techIndex} 
-                                variant="outline" 
+                              <Badge
+                                key={techIndex}
+                                variant="outline"
                                 className="text-xs py-0 px-1 h-5"
                               >
                                 {tech}
@@ -424,8 +291,8 @@ joblib.dump(model, 'posture_model.pkl')
             <div className="lg:w-[65%] w-full">
               <Card className="h-full bg-card/50 backdrop-blur-sm border-border/50">
                 <CardContent className="p-8 h-full overflow-y-auto">
-                  <div 
-                    key={selectedProject} 
+                  <div
+                    key={selectedProject}
                     className="animate-fade-in"
                   >
                     {/* Project Header */}
@@ -437,17 +304,17 @@ joblib.dump(model, 'posture_model.pkl')
                         <div>
                           <h3 className="text-2xl font-bold mb-2">{currentProject.title}</h3>
                           <div className="flex gap-2">
-                            <Badge 
-                              variant="secondary" 
+                            <Badge
+                              variant="secondary"
                               className={`text-sm ${categoryColors[currentProject.category]}`}
                             >
                               {currentProject.category}
                             </Badge>
-                            <Badge 
-                              variant="secondary" 
+                            <Badge
+                              variant="secondary"
                               className={`text-sm ${
-                                currentProject.status === 'Completed' 
-                                  ? 'bg-green-500/20 text-green-400' 
+                                currentProject.status === 'Completed'
+                                  ? 'bg-green-500/20 text-green-400'
                                   : 'bg-yellow-500/20 text-yellow-400'
                               }`}
                             >
@@ -462,29 +329,15 @@ joblib.dump(model, 'posture_model.pkl')
                     <div className="mb-6">
                       {currentProject.presentationUrl ? (
                         <div className="w-full bg-background rounded-lg border border-primary/20 overflow-hidden">
-                          <div className="bg-card px-4 py-2 border-b border-border/50 flex items-center gap-2">
-                            <div className="w-3 h-3 rounded-full bg-red-500"></div>
-                            <div className="w-3 h-3 rounded-full bg-yellow-500"></div>
-                            <div className="w-3 h-3 rounded-full bg-green-500"></div>
-                            <span className="text-muted-foreground text-sm ml-2">presentation.canva</span>
-                          </div>
-                          <div className="p-4">
-                            <iframe
-                              src={currentProject.presentationUrl}
-                              className="w-full h-96 rounded-lg border border-border/30"
-                              allowFullScreen
-                              title="Project Presentation"
-                            />
-                          </div>
+                          <iframe
+                            src={currentProject.presentationUrl}
+                            className="w-full h-96 rounded-lg border border-border/30"
+                            allowFullScreen
+                            title="Project Presentation"
+                          />
                         </div>
                       ) : currentProject.code ? (
                         <div className="w-full bg-gray-900 rounded-lg border border-primary/20 overflow-hidden">
-                          <div className="bg-gray-800 px-4 py-2 border-b border-gray-700 flex items-center gap-2">
-                            <div className="w-3 h-3 rounded-full bg-red-500"></div>
-                            <div className="w-3 h-3 rounded-full bg-yellow-500"></div>
-                            <div className="w-3 h-3 rounded-full bg-green-500"></div>
-                            <span className="text-gray-400 text-sm ml-2">{currentProject.title.replace(/ /g, "_")}.py</span>
-                          </div>
                           <div className="p-0 h-80 overflow-auto">
                             <SyntaxHighlighter
                               language="python"
@@ -497,8 +350,8 @@ joblib.dump(model, 'posture_model.pkl')
                                 lineHeight: '1.5',
                               }}
                               showLineNumbers={true}
-                              lineNumberStyle={{ 
-                                color: '#858585', 
+                              lineNumberStyle={{
+                                color: '#858585',
                                 paddingRight: '1rem',
                               }}
                             >
@@ -529,8 +382,8 @@ joblib.dump(model, 'posture_model.pkl')
                       <h4 className="font-semibold mb-3 text-primary">Key Results</h4>
                       <div className="grid grid-cols-1 md:grid-cols-2 gap-3">
                         {currentProject.metrics.map((metric, metricIndex) => (
-                          <div 
-                            key={metricIndex} 
+                          <div
+                            key={metricIndex}
                             className="flex items-center p-3 bg-background/50 rounded-lg border border-border/50"
                           >
                             <div className="w-2 h-2 rounded-full bg-primary mr-3 flex-shrink-0"></div>
@@ -545,9 +398,9 @@ joblib.dump(model, 'posture_model.pkl')
                       <h4 className="font-semibold mb-3 text-primary">Technologies Used</h4>
                       <div className="flex flex-wrap gap-2">
                         {currentProject.technologies.map((tech, techIndex) => (
-                          <Badge 
-                            key={techIndex} 
-                            variant="outline" 
+                          <Badge
+                            key={techIndex}
+                            variant="outline"
                             className="bg-background/50 border-primary/20"
                           >
                             {tech}
@@ -558,19 +411,19 @@ joblib.dump(model, 'posture_model.pkl')
 
                     {/* Action Buttons */}
                     <div className="flex flex-wrap gap-3">
-                      {currentProject.links.demo && (
+                      {currentProject.links?.demo && (
                         <Button variant="outline-hero" className="flex-1 min-w-[120px]">
                           <ExternalLink className="w-4 h-4 mr-2" />
                           View Demo
                         </Button>
                       )}
-                      {currentProject.links.github && (
+                      {currentProject.links?.github && (
                         <Button variant="ghost" className="flex-1 min-w-[120px]">
                           <Github className="w-4 h-4 mr-2" />
                           Source Code
                         </Button>
                       )}
-                      {currentProject.links.paper && (
+                      {currentProject.links?.paper && (
                         <Button variant="outline" className="flex-1 min-w-[120px]">
                           <FileText className="w-4 h-4 mr-2" />
                           Research Paper
@@ -587,4 +440,3 @@ joblib.dump(model, 'posture_model.pkl')
     </section>
   );
 };
-
