@@ -13,332 +13,200 @@ export const ProjectsSection = () => {
   const projects = [
     {
       id: 0,
-      title: "Advanced RAG Pipeline with Vector Search & LLM Orchestration",
-      description: "Production-grade Retrieval-Augmented Generation system with semantic chunking, hybrid search, and multi-agent workflows",
-      longDescription: "Built a sophisticated RAG system combining vector databases with LLM orchestration for enhanced document retrieval and generation. Implements semantic chunking with RecursiveCharacterTextSplitter, hybrid search using Pinecone and Redis, and OpenAI embeddings for production-scale applications.",
+      title: "AI-Powered Document Intelligence Pipeline",
+      description: "End-to-end RAG pipeline for conversational Q&A on complex mortgage documents.",
+      longDescription: "Engineered a full-stack Retrieval-Augmented Generation (RAG) pipeline in Python using LlamaIndex and Mistral-7B. The system integrates an OCR module (Tesseract, OpenCV) for PDF parsing, advanced chunking and embedding strategies for data processing, and optimized retrieval with query expansion and reranking to improve accuracy. Deployed a functional chatbot using Gradio for an interactive user experience.",
       icon: Brain,
       category: "Corporate",
-      thumbnail: "/api/placeholder/300/200",
-      technologies: ["RAG", "Vector DB", "LangChain", "OpenAI", "Pinecone", "Redis"],
+      technologies: ["RAG", "Python", "LlamaIndex", "Mistral-7B", "OCR", "Gradio", "Vector DB"],
       metrics: [
-        "95% retrieval accuracy",
-        "Sub-200ms response time",
-        "Processing 10K+ documents",
-        "Multi-agent workflow"
+        "Automated Document Segmentation",
+        "Conversational Q&A Enabled",
+        "Optimized Retrieval Accuracy",
+        "Deployed Functional Chatbot"
       ],
       status: "Completed",
-      code: `import { OpenAI } from "openai";
-import { PineconeStore } from "@langchain/pinecone";
-import { OpenAIEmbeddings } from "@langchain/openai";
-import { RecursiveCharacterTextSplitter } from "langchain/text_splitter";
-import { createClient } from "redis";
-import { z } from "zod";
+      code: `from llama_index.core import VectorStoreIndex, SimpleDirectoryReader
+from llama_index.core.retrievers import HybridRetriever
+from llama_index.llms.mistral_ai import MistralAI
+from llama_index.embeddings.huggingface import HuggingFaceEmbedding
+from llama_index.core.node_parser import SemanticSplitterNodeParser
+import gradio as gr
 
-interface RAGConfig {
-  vectorStore: PineconeStore;
-  llm: OpenAI;
-  cache: ReturnType<typeof createClient>;
-  embeddingModel: OpenAIEmbeddings;
-}
+# 1. Load and Process Documents
+documents = SimpleDirectoryReader("./mortgage_docs").load_data()
+splitter = SemanticSplitterNodeParser(
+    buffer_size=1, breakpoint_percentile_threshold=95, embed_model=HuggingFaceEmbedding()
+)
+nodes = splitter.get_nodes_from_documents(documents)
 
-const DocumentSchema = z.object({
-  content: z.string(),
-  metadata: z.object({
-    source: z.string(),
-    chunk_id: z.string(),
-    timestamp: z.date(),
-  }),
-});
+# 2. Setup RAG Components
+llm = MistralAI(model="mistral-large-latest")
+embed_model = HuggingFaceEmbedding(model_name="BAAI/bge-small-en-v1.5")
+index = VectorStoreIndex(nodes, embed_model=embed_model)
 
-class AdvancedRAGPipeline {
-  private config: RAGConfig;
-  private textSplitter: RecursiveCharacterTextSplitter;
+# 3. Configure Hybrid Retriever for Optimized Search
+vector_retriever = index.as_retriever(similarity_top_k=5)
+bm25_retriever = index.as_retriever(retriever_mode="bm25", similarity_top_k=5)
+retriever = HybridRetriever(vector_retriever, bm25_retriever)
 
-  constructor(config: RAGConfig) {
-    this.config = config;
-    this.textSplitter = new RecursiveCharacterTextSplitter({
-      chunkSize: 1000,
-      chunkOverlap: 200,
-    });
-  }
+# 4. Create Query Engine
+query_engine = index.as_query_engine(
+    retriever=retriever,
+    llm=llm,
+    node_postprocessors=[...], # Rerankers
+)
 
-  async processDocument(document: string, metadata: any) {
-    // Semantic chunking with overlap
-    const chunks = await this.textSplitter.splitText(document);
-    
-    // Generate embeddings for each chunk
-    const embeddings = await this.config.embeddingModel.embedDocuments(chunks);
-    
-    // Store in vector database with metadata
-    await this.config.vectorStore.addVectors(
-      embeddings,
-      chunks.map((chunk, index) => ({
-        content: chunk,
-        metadata: { ...metadata, chunk_id: index },
-      }))
-    );
+# 5. Deploy with Gradio UI
+def chatbot_interface(message, history):
+    response = query_engine.query(message)
+    return str(response)
 
-    // Cache frequently accessed chunks in Redis
-    await this.config.cache.setex(
-      metadata.source,
-      3600,
-      JSON.stringify(chunks)
-    );
-  }
-
-  async hybridSearch(query: string, limit: number = 5) {
-    // Vector similarity search
-    const vectorResults = await this.config.vectorStore.similaritySearch(
-      query,
-      limit
-    );
-
-    // Keyword search from cache
-    const cachedResults = await this.config.cache.get(query);
-    
-    // Combine and rank results
-    return this.rankResults([...vectorResults, ...JSON.parse(cachedResults || "[]")]);
-  }
-
-  private rankResults(results: any[]) {
-    // Custom ranking algorithm combining vector similarity and keyword relevance
-    return results
-      .map(result => ({
-        ...result,
-        score: this.calculateRelevanceScore(result)
-      }))
-      .sort((a, b) => b.score - a.score);
-  }
-}`,
+iface = gr.ChatInterface(chatbot_interface)
+iface.launch()`,
       links: {
         demo: "#",
-        github: "#",
-        paper: "#"
+        github: "#"
       }
     },
     {
       id: 1,
-      title: "Distributed ML Training with Kubernetes & Ray", 
-      description: "Scalable machine learning pipeline with distributed training, hyperparameter optimization, and model serving",
-      longDescription: "A sophisticated distributed machine learning platform leveraging Kubernetes and Ray for scalable model training and deployment. Implements distributed training across multiple nodes, automated hyperparameter tuning, and real-time model serving with A/B testing capabilities.",
-      icon: Users,
-      category: "Corporate",
-      thumbnail: "/api/placeholder/300/200",
-      technologies: ["Python", "Kubernetes", "Ray", "TensorFlow", "MLflow", "Docker"],
+      title: "Diabetic Retinopathy Detection using Deep Learning",
+      description: "Automated DR screening system using U-Net++ for segmentation and a VGG16-based CNN for classification.",
+      longDescription: "Engineered an end-to-end automated DR screening system using U-Net++ for retinal vessel segmentation and a VGG16-based CNN for severity classification. Built a full-stack web platform for report generation and doctor consultation, integrating multiple retinal image datasets and advanced preprocessing techniques like CLAHE and gamma correction.",
+      icon: Brain,
+      category: "Publications",
+      technologies: ["Deep Learning", "Python", "Tensorflow", "Keras", "OpenCV", "U-Net++", "VGG16"],
       metrics: [
-        "10x faster training time",
-        "Auto-scaling across 50+ nodes",
-        "95% model accuracy",
-        "Processing 1TB+ datasets"
+        "94.46% Segmentation Accuracy",
+        "91.72% Test Accuracy",
+        "Full-Stack Web Platform",
+        "Published in IEEE"
       ],
       status: "Completed",
-      code: `import ray
-from ray import train, tune
-from ray.train import ScalingConfig
-from ray.train.torch import TorchTrainer
-import torch
-import torch.nn as nn
-from torch.utils.data import DataLoader, DistributedSampler
-import mlflow
-from kubernetes import client, config
+      code: `import tensorflow as tf
+from tensorflow.keras.models import Model
+from tensorflow.keras.layers import Input, Conv2D, MaxPooling2D, UpSampling2D, concatenate
+from tensorflow.keras.applications import VGG16
 
-@ray.remote
-class DistributedTrainer:
-    def __init__(self, model_config, data_config):
-        self.model_config = model_config
-        self.data_config = data_config
-        self.device = torch.device("cuda" if torch.cuda.is_available() else "cpu")
+def build_unet_model(input_shape):
+    # U-Net++ architecture for segmentation
+    inputs = Input(input_shape)
+    # ... complex U-Net++ layers ...
+    outputs = Conv2D(1, 1, activation='sigmoid')(conv9)
+    model = Model(inputs=[inputs], outputs=[outputs])
+    model.compile(optimizer='adam', loss='binary_crossentropy', metrics=['accuracy'])
+    return model
 
-    def setup_distributed_training(self):
-        # Initialize distributed training
-        ray.init(address="ray://head-service:10001")
+def build_vgg16_classifier(input_shape, num_classes):
+    # VGG16 base for classification
+    base_model = VGG16(weights='imagenet', include_top=False, input_shape=input_shape)
+    x = base_model.output
+    x = tf.keras.layers.GlobalAveragePooling2D()(x)
+    x = tf.keras.layers.Dense(1024, activation='relu')(x)
+    predictions = tf.keras.layers.Dense(num_classes, activation='softmax')(x)
+    model = Model(inputs=base_model.input, outputs=predictions)
+    
+    # Freeze initial layers
+    for layer in base_model.layers[:15]:
+        layer.trainable = False
         
-        # Configure Kubernetes autoscaling
-        config.load_incluster_config()
-        v1 = client.AppsV1Api()
-        
-        scaling_config = ScalingConfig(
-            num_workers=4,
-            use_gpu=True,
-            resources_per_worker={"CPU": 4, "GPU": 1}
-        )
-        
-        return scaling_config
+    model.compile(optimizer='adam', loss='categorical_crossentropy', metrics=['accuracy'])
+    return model
 
-    def create_model(self):
-        class DistributedModel(nn.Module):
-            def __init__(self, input_size, hidden_size, num_classes):
-                super().__init__()
-                self.backbone = nn.Sequential(
-                    nn.Linear(input_size, hidden_size),
-                    nn.ReLU(),
-                    nn.Dropout(0.2),
-                    nn.Linear(hidden_size, hidden_size // 2),
-                    nn.ReLU(),
-                    nn.Linear(hidden_size // 2, num_classes)
-                )
-                
-            def forward(self, x):
-                return self.backbone(x)
-        
-        return DistributedModel(**self.model_config)
+# Load data and preprocess (CLAHE, gamma correction)
+# ...
 
-    def train_fn(self, config):
-        model = self.create_model()
-        model = train.torch.prepare_model(model)
-        
-        # Distributed data loading
-        train_dataset = self.load_dataset()
-        train_sampler = DistributedSampler(train_dataset)
-        train_loader = DataLoader(
-            train_dataset, 
-            batch_size=config["batch_size"],
-            sampler=train_sampler
-        )
-        
-        optimizer = torch.optim.Adam(model.parameters(), lr=config["lr"])
-        criterion = nn.CrossEntropyLoss()
-        
-        for epoch in range(config["epochs"]):
-            model.train()
-            total_loss = 0
-            
-            for batch_idx, (data, target) in enumerate(train_loader):
-                optimizer.zero_grad()
-                output = model(data)
-                loss = criterion(output, target)
-                loss.backward()
-                optimizer.step()
-                total_loss += loss.item()
-                
-            # Report metrics for Ray Tune
-            train.report({
-                "loss": total_loss / len(train_loader),
-                "epoch": epoch
-            })
-            
-            # MLflow logging
-            with mlflow.start_run():
-                mlflow.log_metric("train_loss", total_loss / len(train_loader))
-                mlflow.log_metric("epoch", epoch)
+# Train segmentation model
+segmentation_model = build_unet_model((256, 256, 3))
+segmentation_model.fit(train_images, train_masks, ...)
 
-class HyperparameterTuning:
-    def __init__(self, trainer):
-        self.trainer = trainer
-        
-    def optimize(self):
-        search_space = {
-            "lr": tune.loguniform(1e-4, 1e-1),
-            "batch_size": tune.choice([32, 64, 128, 256]),
-            "epochs": tune.choice([10, 20, 30]),
-            "hidden_size": tune.choice([128, 256, 512])
-        }
-        
-        tuner = tune.Tuner(
-            TorchTrainer(
-                train_loop_per_worker=self.trainer.train_fn,
-                scaling_config=self.trainer.setup_distributed_training()
-            ),
-            param_space=search_space,
-            tune_config=tune.TuneConfig(
-                metric="loss",
-                mode="min",
-                num_samples=20
-            )
-        )
-        
-        results = tuner.fit()
-        return results.get_best_result()`,
+# Train classification model
+classifier_model = build_vgg16_classifier((224, 224, 3), 5)
+classifier_model.fit(train_images_classified, train_labels, ...)`
+,
       links: {
-        demo: "#",
-        github: "#",
-        paper: "#"
+        paper: "https://ieeexplore.ieee.org/document/10169720"
       }
     },
     {
       id: 2,
-      title: "Product Recommendation Engine",
-      description: "AI-powered recommendation system using collaborative and content-based filtering.",
-      longDescription: "An intelligent recommendation system that enhances user experience through personalized product suggestions. Built with TensorFlow and deployed on a scalable Flask architecture, the system combines collaborative filtering with content-based algorithms to deliver highly relevant recommendations in under 100ms response time.",
-      icon: Brain,
-      category: "Product Management",
-      thumbnail: "/api/placeholder/300/200",
-      technologies: ["Python", "TensorFlow", "MongoDB", "Flask"],
-      metrics: [
-        "40% increase in cross-selling",
-        "35% improvement in user engagement",
-        "Sub-100ms response time",
-        "Serving 10,000+ users daily"
-      ],
-      status: "In Progress",
-      links: {
-        demo: "#",
-        github: "#"
-      }
-    },
-    {
-      id: 3,
-      title: "Market Analysis Platform",
-      description: "Comprehensive market research and competitive analysis platform with automated data collection.",
-      longDescription: "A comprehensive platform that automates market research and competitive analysis through advanced web scraping, natural language processing, and trend forecasting algorithms. The system continuously monitors market conditions, analyzes competitor strategies, and provides strategic insights for business decision-making.",
+      title: "Price Modelling & Strategy for Breaking Games",
+      description: "Dynamic pricing models to forecast revenue growth and optimize pricing strategy using PED and ETP analysis.",
+      longDescription: "As a strategy consulting extern for Breaking Games, I modeled Price Elasticity of Demand (PED) and Expected Total Profit (ETP) across 4 flagship SKUs. This involved analyzing over 120 customer surveys to identify optimal price points, leading to recommendations for targeted pricing strategies projected to significantly increase revenue and profit margins.",
       icon: BarChart3,
       category: "Corporate",
-      thumbnail: "/api/placeholder/300/200",
-      technologies: ["Python", "Beautiful Soup", "NLP", "D3.js"],
+      technologies: ["Pricing Strategy", "Python", "Pandas", "Statistical Modeling", "Market Research"],
       metrics: [
-        "Analyzed 10,000+ market data points",
-        "90% accuracy in trend prediction",
-        "50% reduction in research time",
-        "Monitoring 100+ competitors"
-      ],
-      status: "Completed",
-      links: {
-        demo: "#",
-        github: "#",
-        paper: "#"
-      }
-    },
-    {
-      id: 4,
-      title: "MBA Capstone Project",
-      description: "Strategic business analysis and product launch strategy for fintech startup.",
-      longDescription: "Comprehensive business strategy development for a fintech startup entering the digital payments market. The project included market sizing, competitive analysis, go-to-market strategy, and financial projections. Presented recommendations to executive leadership resulting in successful product launch.",
-      icon: Target,
-      category: "Academic",
-      thumbnail: "/api/placeholder/300/200",
-      technologies: ["Business Strategy", "Financial Modeling", "Market Research"],
-      metrics: [
-        "3-year revenue projection: $50M",
-        "Market opportunity: $2.5B TAM",
-        "Go-to-market strategy",
-        "Executive presentation"
+        "Projected 27–32% Revenue Uplift",
+        "Projected 35–39% Margin Growth",
+        "Analysis of 120+ Surveys",
+        "Optimized Pricing Models"
       ],
       status: "Completed",
       presentationUrl: "https://www.canva.com/design/DAGzTMs-emg/7zO6xkhB5kmRG5FDSI3pkg/view?embed",
       links: {
-        demo: "#",
-        paper: "#"
+        demo: "#"
+      }
+    },
+    {
+      id: 3,
+      title: "Startup Due Diligence for IgniteXL Ventures",
+      description: "Evaluated startup Popularium using AI-powered market research, TAM-SAM-SOM sizing, and CAC modeling.",
+      longDescription: "Conducted a comprehensive evaluation of the startup Popularium for IgniteXL Ventures. My role involved using AI-powered market research tools (ChatGPT, Perplexity) integrated with TAM–SAM–SOM sizing, Customer Acquisition Cost (CAC) modeling, and competitive moat assessment. I delivered detailed due diligence reports and synergy analyses, highlighting market positioning and monetization potential to inform feasibility decisions.",
+      icon: Target,
+      category: "Corporate",
+      technologies: ["Venture Capital", "Market Research", "Financial Modeling", "Due Diligence", "AI Tools"],
+      metrics: [
+        "TAM–SAM–SOM Sizing",
+        "Customer Acquisition Cost (CAC) Modeling",
+        "Competitive Moat Assessment",
+        "Delivered Due Diligence Reports"
+      ],
+      status: "Completed",
+      presentationUrl: "https://www.canva.com/design/DAGzTMs-emg/7zO6xkhB5kmRG5FDSI3pkg/view?embed",
+      links: {
+        demo: "#"
+      }
+    },
+    {
+      id: 4,
+      title: "Go-to-Market Strategy for TryNow",
+      description: "Designed the GTM strategy for a street-market B2B retail-tech startup, including STP and ROI modeling.",
+      longDescription: "In this academic marketing project, I designed a comprehensive go-to-market strategy for 'TryNow,' a B2B retail-tech concept. The project involved conducting market research with over 120 shoppers, leading Segmentation, Targeting, and Positioning (STP) analysis, and creating detailed ROI models. I also applied 4P and PESTEL frameworks to set a pricing strategy that enabled vendor breakeven within 31-48 days.",
+      icon: ShoppingCart,
+      category: "Academic",
+      technologies: ["Marketing Strategy", "STP", "ROI Modeling", "4P & PESTEL Analysis", "Market Research"],
+      metrics: [
+        "Vendor Breakeven in 31–48 days",
+        "Achieved 33–35% Profit Margin",
+        "Research with 120+ Shoppers",
+        "B2B Go-to-Market Plan"
+      ],
+      status: "Completed",
+      presentationUrl: "https://www.canva.com/design/DAGzTMs-emg/7zO6xkhB5kmRG5FDSI3pkg/view?embed",
+      links: {
+        demo: "#"
       }
     },
     {
       id: 5,
-      title: "Personal Finance Tracker",
-      description: "Mobile-first personal finance application with automated expense categorization.",
-      longDescription: "A user-friendly personal finance application that helps individuals track expenses, set budgets, and achieve financial goals. Features include automated expense categorization using machine learning, bill reminders, and detailed spending analytics with beautiful visualizations.",
+      title: "COVID-19 Contactless Delivery System",
+      description: "IoT-enabled delivery container using NodeMCU for secure, remote door control via a web interface.",
+      longDescription: "Designed and implemented an IoT-enabled delivery container using NodeMCU ESP8266, a servo motor, and a solenoid locking mechanism. This system achieved secure, remote door control via a responsive web-based interface (HTML/CSS), enabling contactless delivery of groceries and essentials to enhance safety during the pandemic.",
       icon: FileText,
-      category: "Personal",
-      thumbnail: "/api/placeholder/300/200",
-      technologies: ["React Native", "Node.js", "PostgreSQL", "Machine Learning"],
+      category: "Publications",
+      technologies: ["IoT", "NodeMCU", "HTML/CSS", "Hardware Integration", "Arduino"],
       metrics: [
-        "500+ active users",
-        "95% expense categorization accuracy",
-        "4.8/5 app store rating",
-        "Tracking $1M+ in transactions"
+        "Secure Remote-Controlled Access",
+        "Responsive Web-Based UI",
+        "Enhanced Delivery Safety",
+        "Published in IETE-SF Journal"
       ],
       status: "Completed",
+      presentationUrl: "https://www.canva.com/design/DAGzTMs-emg/7zO6xkhB5kmRG5FDSI3pkg/view?embed",
       links: {
-        demo: "#",
-        github: "#"
+        paper: "#"
       }
     }
   ];
@@ -346,10 +214,8 @@ class HyperparameterTuning:
   const categories = [
     { id: "all", label: "All" },
     { id: "corporate", label: "Corporate" },
-    { id: "academic", label: "Academic" }, 
-    { id: "product-management", label: "Product Management" },
-    { id: "personal", label: "Personal" },
-    { id: "publications", label: "Publications" }
+    { id: "publications", label: "Publications" },
+    { id: "academic", label: "Academic" }
   ];
 
   const [activeCategory, setActiveCategory] = useState("all");
@@ -359,7 +225,7 @@ class HyperparameterTuning:
     project.category.toLowerCase().replace(" ", "-") === activeCategory
   );
 
-  const currentProject = projects[selectedProject];
+  const currentProject = projects.find(p => p.id === selectedProject) || projects[0];
 
   return (
     <section id="projects" className="py-20 bg-secondary/20">
@@ -378,7 +244,7 @@ class HyperparameterTuning:
 
           {/* Category Tabs */}
           <Tabs value={activeCategory} onValueChange={setActiveCategory} className="mb-8">
-            <TabsList className="grid w-full grid-cols-3 lg:grid-cols-6 bg-card/50 backdrop-blur-sm">
+            <TabsList className="grid w-full grid-cols-2 lg:grid-cols-4 bg-card/50 backdrop-blur-sm">
               {categories.map((category) => (
                 <TabsTrigger 
                   key={category.id} 
@@ -409,12 +275,10 @@ class HyperparameterTuning:
                   >
                     <CardContent className="p-4">
                       <div className="flex items-start gap-4">
-                        {/* Thumbnail */}
                         <div className="w-16 h-16 rounded-lg bg-primary/20 flex items-center justify-center flex-shrink-0 overflow-hidden">
                           <project.icon className="w-8 h-8 text-primary" />
                         </div>
                         
-                        {/* Content */}
                         <div className="flex-1 min-w-0">
                           <div className="flex items-start justify-between mb-2">
                             <h3 className="font-semibold text-sm leading-tight truncate">{project.title}</h3>
@@ -490,7 +354,7 @@ class HyperparameterTuning:
                       </div>
                     </div>
 
-                    {/* Code Preview Area */}
+                    {/* Preview Area */}
                     <div className="mb-6">
                       {currentProject.presentationUrl ? (
                         <div className="w-full bg-background rounded-lg border border-primary/20 overflow-hidden">
@@ -515,55 +379,23 @@ class HyperparameterTuning:
                             <div className="w-3 h-3 rounded-full bg-red-500"></div>
                             <div className="w-3 h-3 rounded-full bg-yellow-500"></div>
                             <div className="w-3 h-3 rounded-full bg-green-500"></div>
-                            <span className="text-gray-400 text-sm ml-2">{currentProject.title}.ts</span>
+                            <span className="text-gray-400 text-sm ml-2">{currentProject.title.replace(/ /g, "_")}.py</span>
                           </div>
                           <div className="p-0 h-80 overflow-auto">
                             <SyntaxHighlighter
-                              language="typescript"
-                              style={{
-                                ...atomDark,
-                                'code[class*="language-"]': {
-                                  ...atomDark['code[class*="language-"]'],
-                                  background: '#1e1e1e',
-                                  color: '#d4d4d4',
-                                },
-                                'pre[class*="language-"]': {
-                                  ...atomDark['pre[class*="language-"]'],
-                                  background: '#1e1e1e',
-                                },
-                                'token.keyword': { color: '#569cd6' },
-                                'token.string': { color: '#ce9178' },
-                                'token.comment': { color: '#6a9955' },
-                                'token.number': { color: '#b5cea8' },
-                                'token.operator': { color: '#d4d4d4' },
-                                'token.punctuation': { color: '#d4d4d4' },
-                                'token.function': { color: '#dcdcaa' },
-                                'token.class-name': { color: '#4ec9b0' },
-                                'token.builtin': { color: '#4ec9b0' },
-                                'token.property': { color: '#9cdcfe' },
-                                'token.constant': { color: '#4fc1ff' },
-                                'token.variable': { color: '#9cdcfe' },
-                                'token.parameter': { color: '#9cdcfe' },
-                                'token.attr-name': { color: '#92c5f7' },
-                                'token.tag': { color: '#569cd6' },
-                                'token.deleted': { color: '#f85149' },
-                                'token.inserted': { color: '#56d364' },
-                              }}
+                              language="python"
+                              style={atomDark}
                               customStyle={{
                                 background: '#1e1e1e',
                                 padding: '1rem',
                                 margin: 0,
                                 fontSize: '14px',
                                 lineHeight: '1.5',
-                                fontFamily: "'Fira Code', 'Consolas', 'Monaco', monospace",
                               }}
                               showLineNumbers={true}
                               lineNumberStyle={{ 
                                 color: '#858585', 
-                                fontSize: '12px',
                                 paddingRight: '1rem',
-                                minWidth: '2.5rem',
-                                textAlign: 'right'
                               }}
                             >
                               {currentProject.code}
