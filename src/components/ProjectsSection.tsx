@@ -2,8 +2,8 @@ import { useState } from "react";
 import { Card, CardContent } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
-import { Tabs, TabsList, TabsTrigger, TabsContent } from "@/components/ui/tabs";
-import { ExternalLink, Github, BarChart3, ShoppingCart, Users, Brain, FileText, Target, Activity, Box, Database, Sigma } from "lucide-react";
+import { Tabs, TabsList, TabsTrigger } from "@/components/ui/tabs";
+import { ExternalLink, Github, BarChart3, ShoppingCart, Users, Brain, FileText, Target, Activity, Box } from "lucide-react";
 import { Prism as SyntaxHighlighter } from 'react-syntax-highlighter';
 import { atomDark } from 'react-syntax-highlighter/dist/esm/styles/prism';
 
@@ -169,23 +169,46 @@ def build_vgg16_classifier(input_shape, num_classes):
     },
     {
       id: 4,
-      title: "Go-to-Market Strategy for TryNow",
-      description: "Designed the GTM strategy for a street-market B2B retail-tech startup, including STP and ROI modeling.",
-      longDescription: "In this academic marketing project, I designed a comprehensive go-to-market strategy for 'TryNow,' a B2B retail-tech concept. The project involved conducting market research with over 120 shoppers, leading Segmentation, Targeting, and Positioning (STP) analysis, and creating detailed ROI models. I also applied 4P and PESTEL frameworks to set a pricing strategy that enabled vendor breakeven within 31-48 days.",
-      icon: ShoppingCart,
-      category: "Case Competition",
-      technologies: ["Marketing Strategy", "STP", "ROI Modeling", "4P & PESTEL Analysis", "Market Research"],
+      title: "People Analytics for Amazon Fulfillment Center",
+      description: "Applied thematic coding and sentiment scoring to 500+ employee feedback entries to identify attrition drivers.",
+      longDescription: "For an Amazon Fulfillment Center, I conducted a deep-dive analysis into employee feedback to uncover key drivers of attrition and productivity bottlenecks. By applying thematic coding and sentiment scoring to over 500 unstructured feedback entries, I quantified role-specific challenges and built segmented cohort profiles with weighted retention metrics, translating these insights into an actionable operational intervention roadmap for stakeholders.",
+      icon: Users,
+      category: "Corporate",
+      technologies: ["People Analytics", "Python", "NLTK", "Sentiment Analysis", "Thematic Coding"],
       metrics: [
-        "Vendor Breakeven in 31–48 days",
-        "Achieved 33–35% Profit Margin",
-        "Research with 120+ Shoppers",
-        "B2B Go-to-Market Plan"
+        "Analyzed 500+ Feedback Entries",
+        "Quantified Attrition Drivers",
+        "Built Segmented Cohort Profiles",
+        "Delivered Operational Roadmap"
       ],
       status: "Completed",
-      presentationUrl: "https://www.canva.com/design/DAGzTMs-emg/7zO6xkhB5kmRG5FDSI3pkg/view?embed",
-      links: {
-        demo: "#"
-      }
+      code: `import pandas as pd
+from nltk.sentiment.vader import SentimentIntensityAnalyzer
+import nltk
+nltk.download('vader_lexicon')
+
+# Sample feedback data
+feedback_data = [
+    "The long hours are becoming unsustainable and are a major issue.",
+    "Management is not supportive and the work environment is stressful.",
+    "I appreciate the flexible schedule, it's a great perk.",
+    "Pay is good, but the physical demand of the job is too high."
+]
+df = pd.DataFrame(feedback_data, columns=['feedback'])
+
+# Initialize sentiment analyzer
+sid = SentimentIntensityAnalyzer()
+
+# Function to get sentiment scores
+def get_sentiment(text):
+    scores = sid.polarity_scores(text)
+    return scores['compound']
+
+# Apply sentiment analysis
+df['sentiment_score'] = df['feedback'].apply(get_sentiment)
+
+print(df)
+`
     },
     {
       id: 5,
@@ -251,6 +274,43 @@ joblib.dump(model, 'posture_model.pkl')
       links: {
         paper: "#"
       }
+    },
+    {
+      id: 7,
+      title: "Go-to-Market Strategy for TryNow",
+      description: "Designed the GTM strategy for a street-market B2B retail-tech startup, including STP and ROI modeling.",
+      longDescription: "In this academic marketing project, I designed a comprehensive go-to-market strategy for 'TryNow,' a B2B retail-tech concept. The project involved conducting market research with over 120 shoppers, leading Segmentation, Targeting, and Positioning (STP) analysis, and creating detailed ROI models. I also applied 4P and PESTEL frameworks to set a pricing strategy that enabled vendor breakeven within 31-48 days.",
+      icon: ShoppingCart,
+      category: "Academic",
+      technologies: ["Marketing Strategy", "STP", "ROI Modeling", "4P & PESTEL Analysis", "Market Research"],
+      metrics: [
+        "Vendor Breakeven in 31–48 days",
+        "Achieved 33–35% Profit Margin",
+        "Research with 120+ Shoppers",
+        "B2B Go-to-Market Plan"
+      ],
+      status: "Completed",
+      presentationUrl: "https://www.canva.com/design/DAGzTMs-emg/7zO6xkhB5kmRG5FDSI3pkg/view?embed",
+      links: {
+        demo: "#"
+      }
+    },
+    {
+      id: 8,
+      title: "Marico Over The Wall - HaloMist",
+      description: "Developed a GTM strategy for a new scalp-tech product, HaloMist, for Marico's Parachute brand.",
+      longDescription: "As part of the Marico Over The Wall competition, our team developed 'HaloMist,' a warm micro-mist clip-on device for Parachute oils. I led the market research and GTM strategy, identifying key consumer pain points and a market opportunity in the premium wellness space. The strategy included product positioning, pricing, a D2C and salon-focused distribution plan, and a digital marketing campaign, culminating in a comprehensive business plan and financial analysis.",
+      icon: Brain,
+      category: "Case Competition",
+      technologies: ["GTM Strategy", "Market Research", "Product Innovation", "Financial Analysis", "Brand Extension"],
+      metrics: [
+        "Target Market of 40-50M Urban Users",
+        "WTP analysis: 42% in ₹500-999 range",
+        "8-12 week pilot launch plan",
+        "Projected contribution of ₹140 per device"
+      ],
+      status: "Completed",
+      presentationUrl: "https://www.canva.com/design/DAGxA1KOwrQ/nA9YYHgvXu1ldjvzpTWDYw/view?embed"
     }
   ];
 
@@ -527,3 +587,4 @@ joblib.dump(model, 'posture_model.pkl')
     </section>
   );
 };
+
