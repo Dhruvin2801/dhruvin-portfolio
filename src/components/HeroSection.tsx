@@ -28,8 +28,8 @@ export const HeroSection = () => {
           {/* Main Heading (no typing animation, clean fade-in) */}
           <div className="animate-slide-up">
             <h1 className="text-5xl md:text-7xl font-bold mb-6 leading-tight animate-fade-in">
-              <span className="block text-white">Hi, I'm</span>
-              <span className="block text-gradient">Dhruvin</span>
+              <span className="text-white">Hi, I'm </span>
+              <span className="text-gradient">Dhruvin</span>
             </h1>
 
             <h2 className="text-2xl md:text-3xl text-muted-foreground mb-8 font-medium animate-fade-in-delay-1">
