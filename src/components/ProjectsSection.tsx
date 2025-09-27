@@ -10,6 +10,14 @@ import { atomDark } from 'react-syntax-highlighter/dist/esm/styles/prism';
 export const ProjectsSection = () => {
   const [selectedProject, setSelectedProject] = useState(0);
 
+  // Color mapping for different categories
+  const categoryColors = {
+    "Corporate": "bg-blue-500/20 text-blue-400",
+    "Publications": "bg-purple-500/20 text-purple-400",
+    "Case Competition": "bg-amber-500/20 text-amber-400",
+    "Academic": "bg-green-500/20 text-green-400",
+  };
+
   const projects = [
     {
       id: 0,
@@ -320,7 +328,7 @@ joblib.dump(model, 'posture_model.pkl')
                             <h3 className="font-semibold text-sm leading-tight truncate">{project.title}</h3>
                             <Badge 
                               variant="secondary" 
-                              className="text-xs ml-2 flex-shrink-0"
+                              className={`text-xs ml-2 flex-shrink-0 ${categoryColors[project.category] || 'bg-gray-500/20 text-gray-400'}`}
                             >
                               {project.category}
                             </Badge>
@@ -371,7 +379,7 @@ joblib.dump(model, 'posture_model.pkl')
                           <div className="flex gap-2">
                             <Badge 
                               variant="secondary" 
-                              className="text-sm"
+                              className={`text-sm ${categoryColors[currentProject.category]}`}
                             >
                               {currentProject.category}
                             </Badge>
