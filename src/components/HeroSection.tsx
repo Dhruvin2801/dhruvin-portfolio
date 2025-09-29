@@ -1,5 +1,5 @@
 import { Button } from "@/components/ui/button";
-import { ArrowRight, Download } from "lucide-react";
+import { ArrowRight, Download, Briefcase } from "lucide-react";
 
 export const HeroSection = () => {
   return (
@@ -44,7 +44,7 @@ export const HeroSection = () => {
 
           {/* CTA Buttons */}
           <div className="flex flex-col sm:flex-row gap-4 justify-center items-center animate-fade-in-delay-3">
-            {/* --- UPDATED BUTTON CODE --- */}
+            {/* Resume Button */}
             <a
               href="/DhruvinDungrani-Resume.pdf"
               download="DhruvinDungrani-Resume.pdf"
@@ -53,15 +53,25 @@ export const HeroSection = () => {
             >
               <Button variant="hero" size="lg" className="group hover-lift">
                 <Download className="w-4 h-4 mr-2" />
-                Download Resume
+                Resume
               </Button>
             </a>
-            {/* --- END OF UPDATE --- */}
 
-            <Button variant="outline-hero" size="lg" className="group hover-lift">
-              Let's Connect
-              <ArrowRight className="w-4 h-4 ml-2 group-hover:translate-x-1 transition-transform" />
-            </Button>
+            {/* Product Portfolio Button */}
+            <a href="#projects">
+              <Button variant="outline-hero" size="lg" className="group hover-lift">
+                <Briefcase className="w-4 h-4 mr-2" />
+                Product Portfolio
+              </Button>
+            </a>
+
+            {/* Let's Connect Button */}
+            <a href="#contact">
+              <Button variant="outline-hero" size="lg" className="group hover-lift">
+                Let's Connect
+                <ArrowRight className="w-4 h-4 ml-2 group-hover:translate-x-1 transition-transform" />
+              </Button>
+            </a>
           </div>
 
           {/* Scroll Indicator */}
@@ -78,3 +88,4 @@ export const HeroSection = () => {
     </section>
   );
 };
+
