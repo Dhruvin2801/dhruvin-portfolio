@@ -44,10 +44,19 @@ export const HeroSection = () => {
 
           {/* CTA Buttons */}
           <div className="flex flex-col sm:flex-row gap-4 justify-center items-center animate-fade-in-delay-3">
-            <Button variant="hero" size="lg" className="group hover-lift">
-              <Download className="w-4 h-4 mr-2" />
-              Download Resume
-            </Button>
+            {/* --- UPDATED BUTTON CODE --- */}
+            <a
+              href="/DhruvinDungrani-Resume.pdf"
+              download="DhruvinDungrani-Resume.pdf"
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              <Button variant="hero" size="lg" className="group hover-lift">
+                <Download className="w-4 h-4 mr-2" />
+                Download Resume
+              </Button>
+            </a>
+            {/* --- END OF UPDATE --- */}
 
             <Button variant="outline-hero" size="lg" className="group hover-lift">
               Let's Connect
