@@ -275,9 +275,9 @@ def build_vgg16_classifier(input_shape, num_classes):
         "Delivered Due Diligence Reports"
       ],
       status: "Completed",
-      presentationUrl: "https://docs.google.com/presentation/d/1Gc2-GEZ8B2S97y2FpMiutembBEG1AfnxFAH5cQ36D2w/edit?embed",
+      presentationUrl: "https://docs.google.com/presentation/d/e/2PACX-1vSmYERh4QZRA_M0VospvGFxitlmhBFFdYAWexDWNROwJaUowmVJX8OnwWYTjeGIqLpq3OlVP2z33E0A/pub?start=false&loop=false&delayms=3000",
       links: {
-        demo: "#"
+        demo: "https://docs.google.com/presentation/d/e/2PACX-1vSmYERh4QZRA_M0VospvGFxitlmhBFFdYAWexDWNROwJaUowmVJX8OnwWYTjeGIqLpq3OlVP2z33E0A/pub?start=false&loop=false&delayms=3000"
       }
     },
     {
@@ -297,7 +297,7 @@ def build_vgg16_classifier(input_shape, num_classes):
       status: "Completed",
       presentationUrl: "https://www.canva.com/design/DAGv1eIjgec/0vwxtIM0GYp1ko_xKHgNmA/view?utm_content=DAGv1eIjgec&utm_campaign=designshare&utm_medium=link2&utm_source=uniquelinks&utlId=hd523b116b0",
       links: {
-        demo: "#"
+        demo: "https://www.canva.com/design/DAGv1eIjgec/0vwxtIM0GYp1ko_xKHgNmA/view?utm_content=DAGv1eIjgec&utm_campaign=designshare&utm_medium=link2&utm_source=uniquelinks&utlId=hd523b116b0"
       }
     },
     {
