@@ -275,7 +275,7 @@ def build_vgg16_classifier(input_shape, num_classes):
         "Delivered Due Diligence Reports"
       ],
       status: "Completed",
-      presentationUrl: "https://docs.google.com/presentation/d/e/2PACX-1vSmYERh4QZRA_M0VospvGFxitlmhBFFdYAWexDWNROwJaUowmVJX8OnwWYTjeGIqLpq3OlVP2z33E0A/pub?start=false&loop=false&delayms=3000?embed",
+      presentationUrl: "https://www.canva.com/design/DAG0cO87ilU/s6YDyCV7iQWi1VWERVcFMQ/view?utm_content=DAG0cO87ilU&utm_campaign=designshare&utm_medium=link2&utm_source=uniquelinks&utlId=h98f88d6f9f?embed",
       links: {
         demo: "https://docs.google.com/presentation/d/e/2PACX-1vSmYERh4QZRA_M0VospvGFxitlmhBFFdYAWexDWNROwJaUowmVJX8OnwWYTjeGIqLpq3OlVP2z33E0A/pub?start=false&loop=false&delayms=3000"
       }
