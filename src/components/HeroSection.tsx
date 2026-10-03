@@ -4,8 +4,9 @@ import { ArrowRight, Download, Linkedin } from "lucide-react";
 export const HeroSection = () => {
   const stats = [
     { value: "2 yrs", label: "Product Manager, IT Techies" },
-    { value: "2×", label: "National finalist: AmEx & Marico" },
-    { value: "5", label: "Papers incl. IEEE & SSRN" },
+    { value: "CSPO", label: "Certified Scrum Product Owner" },
+    { value: "Finalist", label: "National, AmEx Campus Challenge 2026" },
+    { value: "5", label: "Research papers" },
   ];
 
   return (
@@ -20,10 +21,8 @@ export const HeroSection = () => {
             Hi, I'm <span className="text-gradient">Dhruvin Dungrani</span>
           </h1>
 
-          <p className="text-lg md:text-xl text-muted-foreground max-w-2xl leading-relaxed mb-8">
-            Ex-Product Manager and summer intern at Cipla. I work where product,
-            strategy and data meet: pricing, go-to-market, forecasting and
-            turning analysis into decisions.
+          <p className="text-lg md:text-xl text-muted-foreground max-w-3xl leading-relaxed mb-8">
+            Ex-Product Manager turning data into product, pricing and go-to-market decisions.
           </p>
 
           <div className="flex flex-col sm:flex-row gap-3 mb-12">
@@ -51,10 +50,10 @@ export const HeroSection = () => {
             </a>
           </div>
 
-          <div className="grid grid-cols-3 gap-4 max-w-2xl border-t border-border pt-6">
+          <div className="grid grid-cols-2 md:grid-cols-4 gap-4 max-w-3xl border-t border-border pt-6">
             {stats.map((s) => (
               <div key={s.label}>
-                <p className="text-2xl font-bold">{s.value}</p>
+                <p className="text-xl md:text-2xl font-bold leading-tight">{s.value}</p>
                 <p className="text-xs md:text-sm text-muted-foreground">{s.label}</p>
               </div>
             ))}
