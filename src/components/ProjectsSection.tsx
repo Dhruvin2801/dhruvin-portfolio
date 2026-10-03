@@ -8,7 +8,7 @@ import { Prism as SyntaxHighlighter } from 'react-syntax-highlighter';
 import { atomDark } from 'react-syntax-highlighter/dist/esm/styles/prism';
 
 export const ProjectsSection = () => {
-  const [selectedProject, setSelectedProject] = useState(8);
+  const [selectedProject, setSelectedProject] = useState(11);
   const [activeCategory, setActiveCategory] = useState("all");
 
   // Color mapping for different categories
@@ -20,6 +20,28 @@ export const ProjectsSection = () => {
   };
 
   const projects = [
+    {
+      id: 11,
+      title: "Indian Telecom: Customer Trust & Digital Experience",
+      description: "Social media analytics on 45,896 public posts and reviews to test whether customer backlash or regulation changes operator behaviour.",
+      longDescription: "Group project (Social Media Analytics, MBA BA). We collected 45,896 public items from YouTube, Play Store, Reddit, X and Google Trends about Jio, Airtel, Vi and BSNL. Public outrage after tariff hikes faded below baseline within six months, while complaints directed at the regulator rose from roughly 2% to about a third of mentions. We benchmarked operators' published service and ESG claims against the data, audited all four operators' recharge journeys and websites, and closed with nine recommendations ranked by impact per unit of effort.",
+      icon: BarChart3,
+      category: "Academic",
+      technologies: ["Consumer Insights", "Social Listening", "Sentiment Analysis", "Network Analysis", "Website Audit", "Prioritisation"],
+      metrics: [
+        "45,896 public items across 5 platforms",
+        "Outrage faded below baseline within 6 months",
+        "Regulator-directed complaints: ~2% to ~1/3 of mentions",
+        "4 of 6 published operator claims contradicted by the data",
+        "Every operator scored worse on mobile than desktop",
+        "9 actions ranked by impact per unit of effort"
+      ],
+      status: "Completed",
+      presentationUrl: "https://www.canva.com/design/DAHUyNo1YuY/un_8umqw6HwXcgIazavhEQ/view?embed",
+      links: {
+        demo: "https://canva.link/1bolj1d0mybgall"
+      }
+    },
     {
       id: 0,
       title: "AI-Powered Document Intelligence Pipeline",
@@ -265,8 +287,8 @@ joblib.dump(model, 'posture_model.pkl')
     { id: "academic", label: "Academic" }
   ];
 
-  // Display order: strongest PM / strategy work first
-  const featuredOrder = [8, 9, 2, 4, 3, 10, 7, 1, 6, 5, 0];
+  // Display order: newest and strongest first
+  const featuredOrder = [11, 8, 9, 2, 4, 3, 10, 7, 1, 6, 5, 0];
 
   const filteredProjects = projects
     .filter(project =>
