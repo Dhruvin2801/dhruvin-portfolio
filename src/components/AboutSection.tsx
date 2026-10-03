@@ -15,7 +15,7 @@ export const AboutSection = () => {
   ];
 
   const education = [
-    { degree: "MBA, Business Analytics", school: "SBM NMIMS, Mumbai", year: "2025–27", score: "8.10 / 10" },
+    { degree: "MBA", school: "SBM NMIMS, Mumbai", year: "2025–27", score: "8.10 / 10" },
     { degree: "B.Tech, Electronics & Telecommunication", school: "Dwarkadas J. Sanghvi College of Engineering", year: "2019–23", score: "9.21 / 10" },
   ];
 
