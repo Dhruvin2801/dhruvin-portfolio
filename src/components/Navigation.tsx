@@ -1,8 +1,10 @@
 import { Button } from "@/components/ui/button";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 
 export const Navigation = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
+  const [scrolled, setScrolled] = useState(false);
+  const [active, setActive] = useState("");
 
   const navItems = [
     { label: "Projects", href: "#projects" },
@@ -11,8 +13,39 @@ export const Navigation = () => {
     { label: "Contact", href: "#contact" },
   ];
 
+  // Shadow once the page is scrolled
+  useEffect(() => {
+    const onScroll = () => setScrolled(window.scrollY > 8);
+    onScroll();
+    window.addEventListener("scroll", onScroll, { passive: true });
+    return () => window.removeEventListener("scroll", onScroll);
+  }, []);
+
+  // Highlight the section currently on screen
+  useEffect(() => {
+    if (!("IntersectionObserver" in window)) return;
+    const sections = navItems
+      .map((item) => document.querySelector(item.href))
+      .filter((el): el is Element => el !== null);
+
+    const observer = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) setActive(`#${entry.target.id}`);
+        });
+      },
+      { rootMargin: "-45% 0px -50% 0px" }
+    );
+    sections.forEach((s) => observer.observe(s));
+    return () => observer.disconnect();
+  }, []);
+
   return (
-    <nav className="fixed top-0 left-0 right-0 z-50 bg-background/90 backdrop-blur-md border-b border-border">
+    <nav
+      className={`fixed top-0 left-0 right-0 z-50 bg-background/90 backdrop-blur-md border-b border-border transition-shadow ${
+        scrolled ? "shadow-[0_8px_24px_-16px_rgba(15,23,42,0.35)]" : ""
+      }`}
+    >
       <div className="container mx-auto px-6 py-4">
         <div className="flex items-center justify-between">
           <a href="#home" className="flex items-center space-x-2">
@@ -27,7 +60,9 @@ export const Navigation = () => {
               <a
                 key={item.label}
                 href={item.href}
-                className="text-sm font-medium text-muted-foreground hover:text-primary transition-colors"
+                className={`nav-link text-sm font-medium transition-colors hover:text-primary ${
+                  active === item.href ? "text-primary nav-link-active" : "text-muted-foreground"
+                }`}
               >
                 {item.label}
               </a>
@@ -60,7 +95,9 @@ export const Navigation = () => {
                 <a
                   key={item.label}
                   href={item.href}
-                  className="text-sm font-medium text-muted-foreground hover:text-primary transition-colors"
+                  className={`text-sm font-medium transition-colors hover:text-primary ${
+                    active === item.href ? "text-primary" : "text-muted-foreground"
+                  }`}
                   onClick={() => setIsMenuOpen(false)}
                 >
                   {item.label}
