@@ -5,16 +5,25 @@ import { ExperienceSection } from "@/components/ExperienceSection";
 import { AboutSection } from "@/components/AboutSection";
 import { ContactSection } from "@/components/ContactSection";
 import { Footer } from "@/components/Footer";
+import { Reveal } from "@/components/Reveal";
 
 const Index = () => {
   return (
     <div className="min-h-screen bg-background">
       <Navigation />
       <HeroSection />
-      <ProjectsSection />
-      <ExperienceSection />
-      <AboutSection />
-      <ContactSection />
+      <Reveal>
+        <ProjectsSection />
+      </Reveal>
+      <Reveal>
+        <ExperienceSection />
+      </Reveal>
+      <Reveal>
+        <AboutSection />
+      </Reveal>
+      <Reveal>
+        <ContactSection />
+      </Reveal>
       <Footer />
     </div>
   );
