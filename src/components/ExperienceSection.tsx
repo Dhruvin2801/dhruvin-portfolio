@@ -9,12 +9,13 @@ export const ExperienceSection = () => {
       duration: "Apr 2026 – Jun 2026",
       location: "Mumbai",
       achievements: [
-        "Developed demand forecasting solution across Brand–Region–Channel using 13.5K+ observations, achieving 8.39% WMAPE.",
-        "Built a 90-day Supplier Risk Early Warning Engine integrating supplier, operational and quality data, achieving 76.54% Precision@Top10%.",
-        "Translated forecasts and supplier-risk scores into risk-adjusted inventory, alternate sourcing and prioritization for supply-constrained brands.",
-        "Developed Power BI dashboards on forecast accuracy, therapy performance, supplier risk and spend exposure for management.",
+        "Built a demand forecasting pipeline on 13.5K+ monthly sales observations at Brand × Region × Channel level; benchmarked 9 ML models and selected CatBoost at 8.39% test WMAPE, a 31.5% improvement over the seasonal baseline.",
+        "Built a 90-day Supplier Risk Early Warning Engine from supplier, operational and quality data, engineering 81 features from 166 raw variables and achieving 76.54% Precision@Top10%.",
+        "Used SHAP to explain the models and generated 829 supplier-material risk predictions, 72 supplier-level summaries and 1,428 alternate-supplier recommendations for a Power BI dashboard.",
+        "Combined demand forecasts with supplier-risk scores into risk-adjusted inventory planning, alternate sourcing and prioritisation of supply-constrained brands.",
+        "Authored BRDs and model-validation documentation; built VBA automation for SAP Material Master uploads across 25 enterprise templates.",
       ],
-      tags: ["Demand Forecasting", "Supplier Risk", "Power BI"],
+      tags: ["Demand Forecasting", "CatBoost", "SHAP", "Supplier Risk", "Power BI"],
     },
     {
       title: "Product Manager",
