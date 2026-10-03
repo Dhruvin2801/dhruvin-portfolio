@@ -4,8 +4,8 @@ import { ArrowRight, Download, Linkedin } from "lucide-react";
 export const HeroSection = () => {
   const stats = [
     { value: "2 yrs", label: "Product Manager, IT Techies" },
-    { value: "CSPO", label: "Certified Scrum Product Owner" },
-    { value: "3", label: "Publications incl. IEEE" },
+    { value: "2×", label: "National finalist: AmEx & Marico" },
+    { value: "5", label: "Papers incl. IEEE & SSRN" },
   ];
 
   return (
