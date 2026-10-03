@@ -128,7 +128,7 @@ export const ProjectsSection = () => {
       id: 15,
       title: "Forecasting Crude Oil Volatility with News and Regimes",
       description: "Regime-aware ML model combining FinBERT sentiment on 45,000+ headlines with Markov-switching regimes to forecast oil volatility.",
-      longDescription: "Industry GARCH-style models badly underestimate crisis spikes such as 2020. We confirmed structural breaks in oil volatility (2014 shale, 2020 COVID), used a two-regime Markov-switching model that found the same geopolitical shock about 14× stronger in crisis than in calm markets, scored 45,000+ headlines with FinBERT, and used PCA to remove multicollinearity before a Random Forest. Evaluated on a strict 2021–2025 temporal holdout. Published as an SSRN preprint.",
+      longDescription: "Industry GARCH-style models badly underestimate crisis spikes such as 2020. We confirmed structural breaks in oil volatility (2014 shale, 2020 COVID), used a two-regime Markov-switching model that found the same geopolitical shock about 14× stronger in crisis than in calm markets, scored 45,000+ headlines with FinBERT, and used PCA to remove multicollinearity before a Random Forest. Evaluated on a strict 2021–2025 temporal holdout. Published as a research paper.",
       icon: LineChart,
       category: "Research",
       tracks: ["research", "analytics"],
@@ -239,7 +239,7 @@ export const ProjectsSection = () => {
       id: 20,
       title: "EV Market Resilience: $100M Capital Allocation",
       description: "Regime-aware ML on a 630 country-year panel to rank EV markets for a $100M deployment thesis.",
-      longDescription: "Group project (Group C-1), published as an SSRN preprint. Built a regime-aware ML pipeline on a 630 country-year panel covering 50+ countries (2011–2024), combining FinBERT and VADER sentiment with HMM-GMM regime detection that confirmed a 2024 structural break (p < 0.001). Calibrating the decision threshold to 78% lifted Random Forest accuracy from 54% to 67.7% under regime shift, and a Risk-Adjusted Resilience Index ranked 31 markets for a $100M capital-allocation framework.",
+      longDescription: "Group project (Group C-1), published as a research paper. Built a regime-aware ML pipeline on a 630 country-year panel covering 50+ countries (2011–2024), combining FinBERT and VADER sentiment with HMM-GMM regime detection that confirmed a 2024 structural break (p < 0.001). Calibrating the decision threshold to 78% lifted Random Forest accuracy from 54% to 67.7% under regime shift, and a Risk-Adjusted Resilience Index ranked 31 markets for a $100M capital-allocation framework.",
       icon: Zap,
       category: "Research",
       tracks: ["research", "analytics"],
@@ -285,13 +285,12 @@ export const ProjectsSection = () => {
         id: 8,
         title: "Marico OWT Challenge: HaloMist Scalp-Tech",
         description: "Proposed 'HaloMist', a warm micro-mist clip-on for Parachute oils, to modernize the hair oiling ritual for urban consumers.",
-        longDescription: "As a National Finalist in the Marico Over The Wall Challenge, my team developed 'HaloMist,' a novel 'scalp-tech' device to address key consumer pain points like messy and time-consuming hair oiling. The solution is a USB-C powered, clip-on micro-mist warmer for Parachute oil bottles, designed to create a clean, 5-minute, spa-like ritual. Our Go-to-Market strategy focused on D2C, e-commerce, and in-salon demonstrations to target time-pressed urban professionals, with detailed unit economics projecting a positive contribution margin.",
+        longDescription: "For the Marico Over The Wall Challenge, my team developed 'HaloMist,' a novel 'scalp-tech' device to address key consumer pain points like messy and time-consuming hair oiling. The solution is a USB-C powered, clip-on micro-mist warmer for Parachute oil bottles, designed to create a clean, 5-minute, spa-like ritual. Our Go-to-Market strategy focused on D2C, e-commerce, and in-salon demonstrations to target time-pressed urban professionals, with detailed unit economics projecting a positive contribution margin.",
         icon: Target,
         category: "Case Competition",
         tracks: ["product", "marketing"],
         technologies: ["Go-to-Market Strategy", "Product Design", "Market Sizing", "Consumer Segmentation", "Unit Economics", "D2C Marketing"],
         metrics: [
-          "Achieved National Finalist Position",
           "Pitched for the ₹3,000 Cr Premium Haircare Market",
           "GTM plan to reach 10-15M high-intent users",
           "Projected 60,000+ pilot salon demos",
@@ -414,7 +413,7 @@ export const ProjectsSection = () => {
         "94.46% Segmentation Accuracy",
         "91.72% Test Accuracy",
         "Full-Stack Web Platform",
-        "Published in IEEE"
+        "Published research paper"
       ],
       status: "Completed",
       links: {
@@ -501,7 +500,7 @@ joblib.dump(model, 'posture_model.pkl')
   ];
 
   // Display order under "All"
-  const featuredOrder = [12, 13, 8, 21, 11, 2, 15, 20, 14, 16, 17, 4, 18, 9, 3, 19, 10, 1, 6, 5];
+  const featuredOrder = [12, 13, 15, 21, 8, 11, 2, 20, 14, 16, 17, 4, 18, 9, 3, 19, 10, 1, 6, 5];
 
   const filteredProjects = projects
     .filter(project =>
