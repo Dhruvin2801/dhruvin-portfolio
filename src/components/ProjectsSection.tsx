@@ -4,7 +4,7 @@ import { Card, CardContent } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
 import { Tabs, TabsList, TabsTrigger, TabsContent } from "@/components/ui/tabs";
-import { ExternalLink, Github, BarChart3, ShoppingCart, Users, Brain, FileText, Target, Activity, Box, Database, Sigma, Ticket, Sprout, GraduationCap, LineChart, Trophy, Plane, Newspaper, Globe, Zap, LayoutDashboard } from "lucide-react";
+import { ExternalLink, Github, BarChart3, ShoppingCart, Users, Brain, FileText, Target, Activity, Box, Database, Sigma, Ticket, Sprout, GraduationCap, LineChart, Trophy, Plane, Newspaper, Globe, Zap, LayoutDashboard, CreditCard } from "lucide-react";
 import { Prism as SyntaxHighlighter } from 'react-syntax-highlighter';
 import { atomDark } from 'react-syntax-highlighter/dist/esm/styles/prism';
 
@@ -37,6 +37,25 @@ export const ProjectsSection = () => {
   };
 
   const projects: Project[] = [
+    {
+      id: 21,
+      title: "American Express Campus Challenge 2026: National Finalist",
+      description: "Premium-card strategy for affluent households: household pooling and one-tap expense sync, sized at ₹6,973 Cr incremental spend.",
+      longDescription: "Team of three. Round 1: ranked 500K cardmembers by profitability, reaching a 0.943 leaderboard score. Round 2: redesigned benefits for AmEx's India flagship premium card within a ₹20K-per-card yearly cost cap. Our 'Work Earns, Family Experiences' strategy targeted a card that is single-player inside a multi-player life, through two mechanisms: household pooling and one-tap sync of reimbursable work expenses. It was grounded in 10 interviews with ₹10K+ fee cardholders and 6,261 premium-relevant Reddit posts, and sized at ₹6,973 Cr incremental spend on the persona mix. Round 3: national-finalist presentation to an American Express panel.",
+      icon: CreditCard,
+      category: "Case Competition",
+      tracks: ["product", "marketing", "analytics"],
+      technologies: ["Product Strategy", "Market Sizing", "Customer Research", "Benefit Design", "Profitability Modelling", "Unit Economics"],
+      metrics: [
+        "National finalist: Round 3 panel presentation",
+        "Round 1 profitability ranking: 0.943 score",
+        "₹6,973 Cr incremental spend sized",
+        "Within a ₹20K per card yearly benefit-cost cap",
+        "10 cardholder interviews + 6,261 Reddit posts"
+      ],
+      status: "Completed",
+      links: {}
+    },
     {
       id: 12,
       title: "District Pass: Product & GTM Strategy for Eternal",
@@ -109,7 +128,7 @@ export const ProjectsSection = () => {
       id: 15,
       title: "Forecasting Crude Oil Volatility with News and Regimes",
       description: "Regime-aware ML model combining FinBERT sentiment on 45,000+ headlines with Markov-switching regimes to forecast oil volatility.",
-      longDescription: "Industry GARCH-style models badly underestimate crisis spikes such as 2020. We confirmed structural breaks in oil volatility (2014 shale, 2020 COVID), used a two-regime Markov-switching model that found the same geopolitical shock about 14× stronger in crisis than in calm markets, scored 45,000+ headlines with FinBERT, and used PCA to remove multicollinearity before a Random Forest. Evaluated on a strict 2021–2025 temporal holdout. Written up as a research paper.",
+      longDescription: "Industry GARCH-style models badly underestimate crisis spikes such as 2020. We confirmed structural breaks in oil volatility (2014 shale, 2020 COVID), used a two-regime Markov-switching model that found the same geopolitical shock about 14× stronger in crisis than in calm markets, scored 45,000+ headlines with FinBERT, and used PCA to remove multicollinearity before a Random Forest. Evaluated on a strict 2021–2025 temporal holdout. Published as an SSRN preprint.",
       icon: LineChart,
       category: "Research",
       tracks: ["research", "analytics"],
@@ -126,7 +145,7 @@ export const ProjectsSection = () => {
       presentationUrl: "https://www.canva.com/design/DAHBXYz5EIs/uWJYsMvxJu2D1v4nbWGs9w/view?embed",
       links: {
         demo: "https://canva.link/iradrve9bvxeq9c",
-        paper: "#" // TODO: paste the preprint link here
+        paper: "https://papers.ssrn.com/sol3/papers.cfm?abstract_id=6573600"
       }
     },
     {
@@ -220,7 +239,7 @@ export const ProjectsSection = () => {
       id: 20,
       title: "EV Market Resilience: $100M Capital Allocation",
       description: "Regime-aware ML on a 630 country-year panel to rank EV markets for a $100M deployment thesis.",
-      longDescription: "Group project (Group C-1), written up as a research paper. Built a regime-aware ML pipeline on a 630 country-year panel covering 50+ countries (2011–2024), combining FinBERT and VADER sentiment with HMM-GMM regime detection that confirmed a 2024 structural break (p < 0.001). Calibrating the decision threshold to 78% lifted Random Forest accuracy from 54% to 67.7% under regime shift, and a Risk-Adjusted Resilience Index ranked 31 markets for a $100M capital-allocation framework.",
+      longDescription: "Group project (Group C-1), published as an SSRN preprint. Built a regime-aware ML pipeline on a 630 country-year panel covering 50+ countries (2011–2024), combining FinBERT and VADER sentiment with HMM-GMM regime detection that confirmed a 2024 structural break (p < 0.001). Calibrating the decision threshold to 78% lifted Random Forest accuracy from 54% to 67.7% under regime shift, and a Risk-Adjusted Resilience Index ranked 31 markets for a $100M capital-allocation framework.",
       icon: Zap,
       category: "Research",
       tracks: ["research", "analytics"],
@@ -236,7 +255,7 @@ export const ProjectsSection = () => {
       links: {
         demo: "https://canva.link/dw8c3b4fcha4nqv",
         dashboard: "https://globalcharge-ev-strategy-kdswp7ekwz96qczzz5lrne.streamlit.app/",
-        paper: "#" // TODO: paste the preprint link here
+        paper: "https://papers.ssrn.com/sol3/papers.cfm?abstract_id=6568778"
       }
     },
     {
@@ -399,7 +418,74 @@ export const ProjectsSection = () => {
       ],
       status: "Completed",
       links: {
-        paper: "https://ieeexplore.ieee.org/document/10169720"
+        paper: "https://ieeexplore.ieee.org/document/10146626"
+      }
+    },
+    {
+      id: 6,
+      title: "Smart Posture Corrector",
+      description: "IoT and ML-based system for real-time posture analytics and alerting.",
+      longDescription: "Engineered a posture correction system using Arduino, flex sensors, and a buzzer, integrated with a responsive web interface. The system uses a Python-based logistic regression model (87% accuracy) for real-time posture analytics and features a smartphone module leveraging accelerometer and gyroscope APIs for portable monitoring.",
+      icon: Activity,
+      category: "Research",
+      tracks: ["research", "analytics"],
+      technologies: ["IoT", "Arduino", "Python", "Machine Learning", "JavaScript", "HTML/CSS"],
+      metrics: [
+        "87% Model Accuracy",
+        "Real-Time Posture Analytics",
+        "Smartphone-Based Monitoring",
+        "Published in Journal"
+      ],
+      status: "Completed",
+      code: `import pandas as pd
+from sklearn.model_selection import train_test_split
+from sklearn.linear_model import LogisticRegression
+from sklearn.metrics import accuracy_score
+import joblib
+
+# Load sensor data (flex sensor, accelerometer, gyroscope)
+data = pd.read_csv('posture_data.csv')
+X = data[['flex_angle', 'accel_x', 'accel_y', 'gyro_z']]
+y = data['is_correct_posture'] # 0 for incorrect, 1 for correct
+
+# Split data for training and testing
+X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.2, random_state=42)
+
+# Train a Logistic Regression model
+model = LogisticRegression()
+model.fit(X_train, y_train)
+
+# Evaluate the model
+y_pred = model.predict(X_test)
+accuracy = accuracy_score(y_test, y_pred)
+print(f"Model Accuracy: {accuracy * 100:.2f}%")
+
+# Save the trained model for deployment on a server
+joblib.dump(model, 'posture_model.pkl')
+`,
+      links: {
+        paper: "#"
+      }
+    },
+    {
+      id: 5,
+      title: "COVID-19 Contactless Delivery System",
+      description: "IoT-enabled delivery container using NodeMCU for secure, remote door control via a web interface.",
+      longDescription: "Designed and implemented an IoT-enabled delivery container using NodeMCU ESP8266, a servo motor, and a solenoid locking mechanism. This system achieved secure, remote door control via a responsive web-based interface (HTML/CSS), enabling contactless delivery of groceries and essentials to enhance safety during the pandemic.",
+      icon: Box,
+      category: "Research",
+      tracks: ["research"],
+      technologies: ["IoT", "NodeMCU", "HTML/CSS", "Hardware Integration", "Arduino"],
+      metrics: [
+        "Secure Remote-Controlled Access",
+        "Responsive Web-Based UI",
+        "Enhanced Delivery Safety",
+        "Published in IETE-SF Journal"
+      ],
+      status: "Completed",
+      presentationUrl: "https://www.canva.com/design/DAGzTMs-emg/7zO6xkhB5kmRG5FDSI3pkg/view?embed",
+      links: {
+        paper: "#"
       }
     }
   ];
@@ -415,7 +501,7 @@ export const ProjectsSection = () => {
   ];
 
   // Display order under "All"
-  const featuredOrder = [12, 13, 11, 8, 2, 15, 14, 16, 17, 4, 18, 9, 3, 20, 19, 10, 1];
+  const featuredOrder = [12, 13, 8, 21, 11, 2, 15, 20, 14, 16, 17, 4, 18, 9, 3, 19, 10, 1, 6, 5];
 
   const filteredProjects = projects
     .filter(project =>
