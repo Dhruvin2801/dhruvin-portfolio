@@ -53,7 +53,7 @@ export const HeroSection = () => {
           {/* Text */}
           <div className="lg:col-span-7 animate-slide-up">
             <p className="text-sm font-medium text-primary mb-4">
-              MBA Business Analytics · SBM NMIMS, Mumbai · 2025–27
+              MBA · SBM NMIMS, Mumbai · 2025–27
             </p>
 
             <h1 className="text-4xl md:text-6xl font-bold leading-tight mb-6">
