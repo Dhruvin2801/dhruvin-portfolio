@@ -60,43 +60,51 @@ export const ExperienceSection = () => {
     <section id="experience" className="py-16">
       <div className="container mx-auto px-6">
         <div className="max-w-5xl mx-auto">
-          <h2 className="text-3xl md:text-4xl font-bold mb-8">
+          <h2 className="text-3xl md:text-4xl font-bold mb-10">
             <span className="text-gradient">Experience</span>
           </h2>
 
-          <div className="space-y-4">
+          <ol className="relative border-l-2 border-border ml-2 md:ml-3">
             {experiences.map((exp) => (
-              <Card key={exp.company} className="bg-card border-border">
-                <CardContent className="p-6">
-                  <div className="flex flex-col md:flex-row md:items-baseline md:justify-between gap-1 mb-3">
-                    <h3 className="text-lg font-semibold">
-                      {exp.title} <span className="text-primary">· {exp.company}</span>
-                    </h3>
-                    <span className="text-sm text-muted-foreground">
-                      {exp.duration} · {exp.location}
-                    </span>
-                  </div>
+              <li key={exp.company} className="relative pl-7 md:pl-10 pb-8 last:pb-0">
+                {/* Timeline dot */}
+                <span
+                  className="absolute -left-[9px] top-6 w-4 h-4 rounded-full bg-background border-[3px] border-primary"
+                  aria-hidden="true"
+                />
 
-                  <ul className="space-y-1.5 mb-4">
-                    {exp.achievements.map((a, i) => (
-                      <li key={i} className="flex items-start text-sm text-muted-foreground">
-                        <span className="w-1.5 h-1.5 rounded-full bg-primary mt-2 mr-3 flex-shrink-0" />
-                        <span>{a}</span>
-                      </li>
-                    ))}
-                  </ul>
+                <Card className="bg-card border-border transition-all duration-300 hover:-translate-y-0.5 hover:shadow-[0_18px_40px_-24px_rgba(15,23,42,0.35)]">
+                  <CardContent className="p-6">
+                    <div className="flex flex-col md:flex-row md:items-baseline md:justify-between gap-1 mb-3">
+                      <h3 className="text-lg font-semibold">
+                        {exp.title} <span className="text-primary">· {exp.company}</span>
+                      </h3>
+                      <span className="text-sm text-muted-foreground">
+                        {exp.duration} · {exp.location}
+                      </span>
+                    </div>
 
-                  <div className="flex flex-wrap gap-2">
-                    {exp.tags.map((t) => (
-                      <Badge key={t} variant="secondary" className="text-xs">
-                        {t}
-                      </Badge>
-                    ))}
-                  </div>
-                </CardContent>
-              </Card>
+                    <ul className="space-y-1.5 mb-4">
+                      {exp.achievements.map((a, i) => (
+                        <li key={i} className="flex items-start text-sm text-muted-foreground">
+                          <span className="w-1.5 h-1.5 rounded-full bg-primary mt-2 mr-3 flex-shrink-0" />
+                          <span>{a}</span>
+                        </li>
+                      ))}
+                    </ul>
+
+                    <div className="flex flex-wrap gap-2">
+                      {exp.tags.map((t) => (
+                        <Badge key={t} variant="secondary" className="text-xs">
+                          {t}
+                        </Badge>
+                      ))}
+                    </div>
+                  </CardContent>
+                </Card>
+              </li>
             ))}
-          </div>
+          </ol>
         </div>
       </div>
     </section>
